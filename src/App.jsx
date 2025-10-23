@@ -344,68 +344,64 @@ export default function App() {
 
       {/* ---------- SUCCESS PARTNERS (أسرع + Hover) ---------- */}
       <section
+  style={{
+    backgroundColor: "#fff",
+    padding: "90px 20px",
+    textAlign: "center",
+    overflow: "hidden",
+  }}
+>
+  <h2
+    className="fade-in-up"
+    style={{
+      fontSize: "2rem",
+      color: "#00a89b",
+      fontWeight: "700",
+      marginBottom: "40px",
+    }}
+  >
+    {isArabic ? "شركاء النجاح" : "Success Partners"}
+  </h2>
+
+  <div
+    className="partners-slider"
+    style={{
+      display: "flex",
+      gap: "50px",
+      animation: "scroll 10s linear infinite",
+      width: "max-content",
+      margin: "0 auto",
+    }}
+  >
+    {[1, 2, 3, 4, 5].map((i) => (
+      <div
+        key={i}
         style={{
-          backgroundColor: "#fff",
-          padding: "90px 20px",
-          textAlign: "center",
-          overflow: "hidden",
+          width: "120px",
+          height: "120px",
+          borderRadius: "12px",
+          backgroundColor: "#f4f7f9",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
         }}
       >
-        <h2
+        <img
+          src={`/partners/brand${i}.png`}
+          alt={`partner-${i}`}
           style={{
-            fontSize: "2rem",
-            color: "#00a89b",
-            fontWeight: "700",
-            marginBottom: "40px",
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            borderRadius: "10px",
           }}
-        >
-          {isArabic ? "شركاء النجاح" : "Success Partners"}
-        </h2>
+        />
+      </div>
+    ))}
+  </div>
+</section>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "50px",
-            animation: "scroll 6s linear infinite", // أسرع
-            width: "max-content",
-            margin: "0 auto",
-          }}
-        >
-          {partners.map((logo, i) => (
-            <div
-              key={i}
-              style={{
-                width: "120px",
-                height: "120px",
-                borderRadius: "12px",
-                backgroundColor: "#f4f7f9",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
-                transition: "transform 0.3s ease",
-              }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.transform = "scale(1.1)")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.transform = "scale(1)")
-              }
-            >
-              <img
-                src={`/partners/${logo}`}
-                alt={`partner-${i}`}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                  borderRadius: "12px",
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ---------- FOOTER (Gradient لذيذ) ---------- */}
       <footer
@@ -447,6 +443,7 @@ export default function App() {
     </div>
   );
 }
+
 
 
 
