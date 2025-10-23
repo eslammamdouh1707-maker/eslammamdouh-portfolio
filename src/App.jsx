@@ -3,7 +3,7 @@ import "./App.css";
 import meImg from "./assets/me.jpg";
 import heroImg from "./assets/hero.jpg";
 
-// ✅ خدماتنا (صور الخدمات داخل src/assets/services/)
+// ✅ خدماتنا
 const services = [
   {
     title_ar: "إدارة الحملات الإعلانية",
@@ -27,8 +27,7 @@ const services = [
     title_ar: "كتابة المحتوى",
     title_en: "Copywriting",
     image: new URL("./assets/services/service-copy.jpg", import.meta.url).href,
-    desc_ar:
-      "محتوى مؤثر يحكي قصة البراند ويحوّل الزوار إلى عملاء فعليين.",
+    desc_ar: "محتوى مؤثر يحكي قصة البراند ويحوّل الزوار إلى عملاء فعليين.",
     desc_en:
       "Impactful copy that tells your brand story and converts visitors into loyal customers.",
   },
@@ -62,7 +61,7 @@ const services = [
   },
 ];
 
-// ✅ شركاء النجاح (صور داخل public/partners/)
+// ✅ شركاء النجاح (اتأكد إن الصور في public/partners/)
 const partners = [
   "brand1.png.jpg",
   "brand2.png.jpg",
@@ -99,7 +98,6 @@ export default function App() {
           padding: "0 40px 80px",
         }}
       >
-        {/* الخلفية */}
         <div
           style={{
             position: "absolute",
@@ -112,11 +110,11 @@ export default function App() {
           }}
         />
 
-        {/* الصورة أعلى اليسار */}
+        {/* الصورة أعلى الشمال */}
         <div
           style={{
             position: "absolute",
-            top: "50px",
+            top: "40px",
             left: isArabic ? "unset" : "60px",
             right: isArabic ? "60px" : "unset",
             zIndex: 3,
@@ -275,6 +273,7 @@ export default function App() {
         </h2>
 
         <div
+          className="services-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
@@ -296,11 +295,13 @@ export default function App() {
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = "translateY(-8px)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(0,0,0,0.12)";
+                e.currentTarget.style.boxShadow =
+                  "0 12px 30px rgba(0,0,0,0.12)";
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 8px 25px rgba(0,0,0,0.08)";
+                e.currentTarget.style.boxShadow =
+                  "0 8px 25px rgba(0,0,0,0.08)";
               }}
             >
               <img
@@ -361,10 +362,11 @@ export default function App() {
         </h2>
 
         <div
+          className="partners-slider"
           style={{
             display: "flex",
             gap: "50px",
-            animation: "scroll 6s linear infinite",
+            animation: "scroll 5s linear infinite",
             width: "max-content",
             margin: "0 auto",
           }}
@@ -391,7 +393,7 @@ export default function App() {
               }
             >
               <img
-                src={`${import.meta.env.BASE_URL}partners/${logo}`}
+                src={`/partners/${logo}`}
                 alt={`partner-${i}`}
                 style={{
                   width: "100%",
@@ -440,11 +442,76 @@ export default function App() {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
           }
+
+          /* ✅ Responsive Design */
+          @media (max-width: 768px) {
+            section {
+              padding: 50px 15px !important;
+            }
+
+            section:first-child {
+              flex-direction: column !important;
+              align-items: center !important;
+              justify-content: flex-end !important;
+              text-align: center !important;
+            }
+
+            section:first-child img {
+              width: 180px !important;
+              height: 180px !important;
+              margin: 0 auto 20px auto !important;
+              display: block !important;
+            }
+
+            h1 {
+              font-size: 1.8rem !important;
+              text-align: center !important;
+            }
+
+            h2 {
+              font-size: 1.5rem !important;
+            }
+
+            p {
+              font-size: 1rem !important;
+            }
+
+            .services-grid {
+              grid-template-columns: 1fr !important;
+            }
+
+            .partners-slider {
+              animation-duration: 8s !important;
+              gap: 25px !important;
+            }
+
+            footer {
+              padding: 25px 10px !important;
+              font-size: 0.9rem !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            h1 {
+              font-size: 1.6rem !important;
+            }
+
+            p {
+              font-size: 0.95rem !important;
+            }
+
+            footer p {
+              font-size: 0.85rem !important;
+            }
+          }
         `}
       </style>
     </div>
   );
 }
+
+
+
 
 
 
