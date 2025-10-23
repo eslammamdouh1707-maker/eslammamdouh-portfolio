@@ -61,13 +61,13 @@ const services = [
   },
 ];
 
-// ✅ شركاء النجاح (اتأكد إن الصور في public/partners/)
+// ✅ شركاء النجاح (صور داخل public/partners/)
 const partners = [
-  "brand1.png.jpg",
-  "brand2.png.jpg",
-  "brand3.png.jpg",
-  "brand4.png.jpg",
-  "brand5.png.jpg",
+  "brand1.png",
+  "brand2.png",
+  "brand3.png",
+  "brand4.png",
+  "brand5.png",
 ];
 
 export default function App() {
@@ -88,7 +88,7 @@ export default function App() {
       <section
         style={{
           position: "relative",
-          height: "100vh",
+          minHeight: "100vh",
           display: "flex",
           alignItems: "flex-end",
           justifyContent: "center",
@@ -110,13 +110,13 @@ export default function App() {
           }}
         />
 
-        {/* الصورة أعلى الشمال */}
         <div
           style={{
             position: "absolute",
             top: "40px",
-            left: isArabic ? "unset" : "60px",
-            right: isArabic ? "60px" : "unset",
+            left: isArabic ? "unset" : "50%",
+            right: isArabic ? "50%" : "unset",
+            transform: "translateX(-50%)",
             zIndex: 3,
           }}
         >
@@ -124,8 +124,8 @@ export default function App() {
             src={meImg}
             alt="Eslam Mamdouh"
             style={{
-              width: "220px",
-              height: "220px",
+              width: "180px",
+              height: "180px",
               borderRadius: "50%",
               objectFit: "cover",
               border: "4px solid #00a89b",
@@ -135,128 +135,83 @@ export default function App() {
           />
         </div>
 
-        {/* النص */}
         <div
           style={{
             position: "relative",
             zIndex: 2,
             display: "flex",
-            flexDirection: isArabic ? "row-reverse" : "row",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "flex-end",
             maxWidth: "1200px",
             width: "100%",
-            gap: "60px",
+            textAlign: "center",
           }}
         >
-          <div
-            className="fade-in-right"
+          <h1
             style={{
-              flex: "1",
-              textAlign: isArabic ? "right" : "left",
-              marginBottom: "40px",
+              fontSize: "clamp(1.6rem, 4vw, 2.5rem)",
+              fontWeight: "700",
+              color: "#0e4658",
+              marginTop: "250px",
             }}
           >
-            <h1
-              style={{
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                fontWeight: "700",
-                color: "#0e4658",
-                marginBottom: "20px",
-                animation: "fadeSlideDown 1s ease-out",
-              }}
-            >
-              {isArabic
-                ? "براندك في إيد أمينة... تفكير، تنفيذ، ونتائج."
-                : "Your Brand Is in Safe Hands — Strategy, Action, Results."}
-            </h1>
-            <p
-              style={{
-                fontSize: "1.2rem",
-                color: "#333",
-                marginTop: "25px",
-                lineHeight: "1.8",
-                animation: "fadeSlideUp 1.2s ease-out",
-              }}
-            >
-              {isArabic
-                ? "بنصمم استراتيجيات تسويق ذكية مبنية على تحليل السوق وتحقيق أهدافك التجارية بطرق مبتكرة وحديثة."
-                : "We create smart marketing strategies based on market analysis and innovative methods that drive real results."}
-            </p>
+            {isArabic
+              ? "براندك في إيد أمينة... تفكير، تنفيذ، ونتائج."
+              : "Your Brand Is in Safe Hands — Strategy, Action, Results."}
+          </h1>
+          <p
+            style={{
+              fontSize: "1.1rem",
+              color: "#333",
+              marginTop: "20px",
+              lineHeight: "1.8",
+              maxWidth: "800px",
+            }}
+          >
+            {isArabic
+              ? "بنصمم استراتيجيات تسويق ذكية مبنية على تحليل السوق وتحقيق أهدافك التجارية بطرق مبتكرة وحديثة."
+              : "We create smart marketing strategies based on market analysis and innovative methods that drive real results."}
+          </p>
 
-            {/* أزرار اللغة */}
-            <div style={{ marginTop: "35px" }}>
-              <button
-                onClick={() => setLang("ar")}
-                style={{
-                  background: lang === "ar" ? "#00a89b" : "#e0e0e0",
-                  color: lang === "ar" ? "#fff" : "#222",
-                  padding: "12px 25px",
-                  borderRadius: "25px",
-                  border: "none",
-                  marginRight: "10px",
-                  cursor: "pointer",
-                  transition: "0.3s",
-                }}
-              >
-                🇪🇬 Arabic
-              </button>
-              <button
-                onClick={() => setLang("en")}
-                style={{
-                  background: lang === "en" ? "#00a89b" : "#e0e0e0",
-                  color: lang === "en" ? "#fff" : "#222",
-                  padding: "12px 25px",
-                  borderRadius: "25px",
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "0.3s",
-                }}
-              >
-                🌍 English
-              </button>
-            </div>
+          <div style={{ marginTop: "30px" }}>
+            <button
+              onClick={() => setLang("ar")}
+              style={{
+                background: lang === "ar" ? "#00a89b" : "#e0e0e0",
+                color: lang === "ar" ? "#fff" : "#222",
+                padding: "12px 25px",
+                borderRadius: "25px",
+                border: "none",
+                marginRight: "10px",
+                cursor: "pointer",
+                transition: "0.3s",
+              }}
+            >
+              🇪🇬 Arabic
+            </button>
+            <button
+              onClick={() => setLang("en")}
+              style={{
+                background: lang === "en" ? "#00a89b" : "#e0e0e0",
+                color: lang === "en" ? "#fff" : "#222",
+                padding: "12px 25px",
+                borderRadius: "25px",
+                border: "none",
+                cursor: "pointer",
+                transition: "0.3s",
+              }}
+            >
+              🌍 English
+            </button>
           </div>
         </div>
-      </section>
-
-      {/* ---------- WHY HZ ---------- */}
-      <section
-        style={{
-          backgroundColor: "#fff",
-          padding: "80px 20px",
-          textAlign: "center",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "2rem",
-            color: "#00a89b",
-            fontWeight: "700",
-            marginBottom: "20px",
-          }}
-        >
-          Why Choose HZ?
-        </h2>
-        <p
-          style={{
-            color: "#444",
-            fontSize: "1.1rem",
-            maxWidth: "900px",
-            margin: "0 auto",
-            lineHeight: "1.8",
-          }}
-        >
-          We're not just marketers — we’re your growth partners. We turn your
-          ideas into measurable success, combining creativity, analytics, and
-          years of expertise to build impactful brands.
-        </p>
       </section>
 
       {/* ---------- SERVICES ---------- */}
       <section
         style={{
-          padding: "80px 20px",
+          padding: "70px 20px",
           textAlign: "center",
           backgroundColor: "#f9fbfc",
         }}
@@ -273,10 +228,9 @@ export default function App() {
         </h2>
 
         <div
-          className="services-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "25px",
             maxWidth: "1200px",
             margin: "0 auto",
@@ -290,18 +244,7 @@ export default function App() {
                 borderRadius: "18px",
                 boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
                 overflow: "hidden",
-                transition: "transform 0.35s ease, box-shadow 0.35s ease",
-                cursor: "pointer",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = "translateY(-8px)";
-                e.currentTarget.style.boxShadow =
-                  "0 12px 30px rgba(0,0,0,0.12)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow =
-                  "0 8px 25px rgba(0,0,0,0.08)";
+                transition: "transform 0.35s ease",
               }}
             >
               <img
@@ -309,9 +252,8 @@ export default function App() {
                 alt={isArabic ? s.title_ar : s.title_en}
                 style={{
                   width: "100%",
-                  height: "210px",
+                  height: "200px",
                   objectFit: "cover",
-                  transition: "transform 0.5s ease",
                 }}
               />
               <div style={{ padding: "25px" }}>
@@ -330,7 +272,6 @@ export default function App() {
                     color: "#333",
                     fontSize: "1rem",
                     lineHeight: "1.6",
-                    textAlign: "center",
                   }}
                 >
                   {isArabic ? s.desc_ar : s.desc_en}
@@ -362,16 +303,15 @@ export default function App() {
         </h2>
 
         <div
-          className="partners-slider"
           style={{
             display: "flex",
             gap: "50px",
-            animation: "scroll 5s linear infinite",
+            animation: "scroll 6s linear infinite",
             width: "max-content",
             margin: "0 auto",
           }}
         >
-          {partners.map((logo, i) => (
+          {partners.map((img, i) => (
             <div
               key={i}
               style={{
@@ -385,15 +325,9 @@ export default function App() {
                 boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
                 transition: "transform 0.3s ease",
               }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.transform = "scale(1.1)")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.transform = "scale(1)")
-              }
             >
               <img
-                src={`/partners/${logo}`}
+                src={`${import.meta.env.BASE_URL}partners/${img}`}
                 alt={`partner-${i}`}
                 style={{
                   width: "100%",
@@ -417,8 +351,8 @@ export default function App() {
           fontSize: "1rem",
         }}
       >
-        <p style={{ margin: "5px 0" }}>📧 mamdouheslam913@gmail.com</p>
-        <p style={{ margin: "5px 0" }}>📱 01091837869 | 01110167731</p>
+        <p>📧 mamdouheslam913@gmail.com</p>
+        <p>📱 01091837869 | 01110167731</p>
         <p style={{ marginTop: "15px", fontSize: "0.9rem", color: "#f0f0f0" }}>
           © 2025 HZ Marketing — All Rights Reserved.
         </p>
@@ -426,89 +360,29 @@ export default function App() {
 
       <style>
         {`
-          @keyframes fadeZoom {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-          }
-          @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes fadeSlideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
           @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
           }
 
-          /* ✅ Responsive Design */
           @media (max-width: 768px) {
-            section {
-              padding: 50px 15px !important;
-            }
-
-            section:first-child {
-              flex-direction: column !important;
-              align-items: center !important;
-              justify-content: flex-end !important;
-              text-align: center !important;
-            }
-
-            section:first-child img {
-              width: 180px !important;
-              height: 180px !important;
-              margin: 0 auto 20px auto !important;
-              display: block !important;
-            }
-
-            h1 {
-              font-size: 1.8rem !important;
-              text-align: center !important;
-            }
-
-            h2 {
-              font-size: 1.5rem !important;
-            }
-
-            p {
-              font-size: 1rem !important;
-            }
-
-            .services-grid {
-              grid-template-columns: 1fr !important;
-            }
-
-            .partners-slider {
-              animation-duration: 8s !important;
-              gap: 25px !important;
-            }
-
-            footer {
-              padding: 25px 10px !important;
-              font-size: 0.9rem !important;
-            }
+            h1 { font-size: 1.7rem !important; }
+            h2 { font-size: 1.4rem !important; }
+            p { font-size: 0.95rem !important; }
+            .partners { gap: 20px !important; }
+            section { padding: 50px 15px !important; }
           }
 
           @media (max-width: 480px) {
-            h1 {
-              font-size: 1.6rem !important;
-            }
-
-            p {
-              font-size: 0.95rem !important;
-            }
-
-            footer p {
-              font-size: 0.85rem !important;
-            }
+            h1 { font-size: 1.4rem !important; }
+            p { font-size: 0.85rem !important; }
           }
         `}
       </style>
     </div>
   );
 }
+
 
 
 
