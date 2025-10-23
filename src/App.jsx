@@ -90,14 +90,15 @@ export default function App() {
           position: "relative",
           minHeight: "100vh",
           display: "flex",
-          alignItems: "flex-end",
+          flexDirection: "column",
+          alignItems: "center",
           justifyContent: "center",
-          direction: isArabic ? "rtl" : "ltr",
-          textAlign: isArabic ? "right" : "left",
+          textAlign: "center",
+          padding: "40px 20px",
           overflow: "hidden",
-          padding: "0 40px 80px",
         }}
       >
+        {/* الخلفية */}
         <div
           style={{
             position: "absolute",
@@ -110,50 +111,31 @@ export default function App() {
           }}
         />
 
-        <div
+        {/* الصورة */}
+        <img
+          src={meImg}
+          alt="Eslam Mamdouh"
           style={{
-            position: "absolute",
-            top: "40px",
-            left: isArabic ? "unset" : "50%",
-            right: isArabic ? "50%" : "unset",
-            transform: "translateX(-50%)",
-            zIndex: 3,
-          }}
-        >
-          <img
-            src={meImg}
-            alt="Eslam Mamdouh"
-            style={{
-              width: "180px",
-              height: "180px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              border: "4px solid #00a89b",
-              boxShadow: "0 0 25px rgba(0,168,155,0.5)",
-              animation: "fadeZoom 1.5s ease-out",
-            }}
-          />
-        </div>
-
-        <div
-          style={{
-            position: "relative",
+            width: "180px",
+            height: "180px",
+            borderRadius: "50%",
+            objectFit: "cover",
+            border: "4px solid #00a89b",
+            boxShadow: "0 0 25px rgba(0,168,155,0.5)",
             zIndex: 2,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            maxWidth: "1200px",
-            width: "100%",
-            textAlign: "center",
+            marginBottom: "25px",
+            animation: "fadeZoom 1.5s ease-out",
           }}
-        >
+        />
+
+        {/* النص */}
+        <div style={{ zIndex: 2, maxWidth: "900px" }}>
           <h1
             style={{
-              fontSize: "clamp(1.6rem, 4vw, 2.5rem)",
+              fontSize: "clamp(1.8rem, 5vw, 3rem)",
               fontWeight: "700",
               color: "#0e4658",
-              marginTop: "250px",
+              marginBottom: "20px",
             }}
           >
             {isArabic
@@ -164,9 +146,8 @@ export default function App() {
             style={{
               fontSize: "1.1rem",
               color: "#333",
-              marginTop: "20px",
               lineHeight: "1.8",
-              maxWidth: "800px",
+              marginBottom: "30px",
             }}
           >
             {isArabic
@@ -174,7 +155,8 @@ export default function App() {
               : "We create smart marketing strategies based on market analysis and innovative methods that drive real results."}
           </p>
 
-          <div style={{ marginTop: "30px" }}>
+          {/* أزرار اللغة */}
+          <div>
             <button
               onClick={() => setLang("ar")}
               style={{
@@ -185,7 +167,6 @@ export default function App() {
                 border: "none",
                 marginRight: "10px",
                 cursor: "pointer",
-                transition: "0.3s",
               }}
             >
               🇪🇬 Arabic
@@ -199,7 +180,6 @@ export default function App() {
                 borderRadius: "25px",
                 border: "none",
                 cursor: "pointer",
-                transition: "0.3s",
               }}
             >
               🌍 English
@@ -208,87 +188,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* ---------- SERVICES ---------- */}
-      <section
-        style={{
-          padding: "70px 20px",
-          textAlign: "center",
-          backgroundColor: "#f9fbfc",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "2rem",
-            color: "#00a89b",
-            marginBottom: "40px",
-            fontWeight: "700",
-          }}
-        >
-          {isArabic ? "خدماتنا" : "Our Services"}
-        </h2>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "25px",
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          {services.map((s, i) => (
-            <div
-              key={i}
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: "18px",
-                boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
-                overflow: "hidden",
-                transition: "transform 0.35s ease",
-              }}
-            >
-              <img
-                src={s.image}
-                alt={isArabic ? s.title_ar : s.title_en}
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                }}
-              />
-              <div style={{ padding: "25px" }}>
-                <h3
-                  style={{
-                    color: "#00796b",
-                    marginBottom: "10px",
-                    fontWeight: "700",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  {isArabic ? s.title_ar : s.title_en}
-                </h3>
-                <p
-                  style={{
-                    color: "#333",
-                    fontSize: "1rem",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  {isArabic ? s.desc_ar : s.desc_en}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ---------- SUCCESS PARTNERS ---------- */}
       <section
         style={{
           backgroundColor: "#fff",
-          padding: "90px 20px",
+          padding: "80px 20px",
           textAlign: "center",
-          overflow: "hidden",
         }}
       >
         <h2
@@ -305,13 +210,12 @@ export default function App() {
         <div
           style={{
             display: "flex",
-            gap: "50px",
-            animation: "scroll 6s linear infinite",
-            width: "max-content",
-            margin: "0 auto",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "25px",
           }}
         >
-          {partners.map((img, i) => (
+          {partners.map((logo, i) => (
             <div
               key={i}
               style={{
@@ -323,11 +227,10 @@ export default function App() {
                 alignItems: "center",
                 justifyContent: "center",
                 boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
-                transition: "transform 0.3s ease",
               }}
             >
               <img
-                src={`${import.meta.env.BASE_URL}partners/${img}`}
+                src={`${import.meta.env.BASE_URL}partners/${logo}`}
                 alt={`partner-${i}`}
                 style={{
                   width: "100%",
@@ -360,28 +263,29 @@ export default function App() {
 
       <style>
         {`
-          @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+          @keyframes fadeZoom {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
           }
 
           @media (max-width: 768px) {
-            h1 { font-size: 1.7rem !important; }
+            section { padding: 50px 15px !important; }
+            h1 { font-size: 1.6rem !important; }
             h2 { font-size: 1.4rem !important; }
             p { font-size: 0.95rem !important; }
-            .partners { gap: 20px !important; }
-            section { padding: 50px 15px !important; }
+            img { width: 150px !important; height: 150px !important; }
           }
 
           @media (max-width: 480px) {
             h1 { font-size: 1.4rem !important; }
-            p { font-size: 0.85rem !important; }
+            p { font-size: 0.9rem !important; }
           }
         `}
       </style>
     </div>
   );
 }
+
 
 
 
