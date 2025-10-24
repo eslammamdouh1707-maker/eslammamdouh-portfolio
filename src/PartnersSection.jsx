@@ -1,7 +1,9 @@
 import React from "react";
 
-export default function PartnersSection() {
-  // ✅ روابط الصور الخارجية
+export default function PartnersSection({ lang }) {
+  const isArabic = lang === "ar";
+
+  // ✅ روابط اللوجهات من Postimg
   const partners = [
     "https://i.postimg.cc/XJ8xBFqc/bubbly.jpg",
     "https://i.postimg.cc/j2ScH5nW/djeep.jpg",
@@ -13,9 +15,10 @@ export default function PartnersSection() {
   return (
     <section
       style={{
-        backgroundColor: "#f7f9fb",
-        padding: "80px 20px",
+        backgroundColor: "#fff",
+        padding: "90px 20px",
         textAlign: "center",
+        overflow: "hidden",
       }}
     >
       <h2
@@ -26,67 +29,68 @@ export default function PartnersSection() {
           marginBottom: "40px",
         }}
       >
-        شركاء النجاح
+        {isArabic ? "شركاء النجاح" : "Success Partners"}
       </h2>
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "35px",
-        }}
-      >
-        {partners.map((logo, i) => (
-          <div
-            key={i}
-            style={{
-              width: "130px",
-              height: "130px",
-              borderRadius: "16px",
-              backgroundColor: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              boxShadow: "0 5px 15px rgba(0,0,0,0.08)",
-              overflow: "hidden",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = "scale(1.1)";
-              e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.15)";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-              e.currentTarget.style.boxShadow = "0 5px 15px rgba(0,0,0,0.08)";
-            }}
-          >
-            <img
-              src={logo}
-              alt={`partner-${i}`}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                borderRadius: "16px",
-              }}
-            />
+      {/* ✅ صف اللوجوهات */}
+      <div className="partners-track">
+        {[...partners, ...partners].map((logo, i) => (
+          <div key={i} className="partner-logo">
+            <img src={logo} alt={`Partner ${i}`} />
           </div>
         ))}
       </div>
 
-      {/* ✅ Responsive */}
       <style>
         {`
+          .partners-track {
+            display: flex;
+            width: max-content;
+            animation: slideLeft 8s linear infinite;
+          }
+
+          .partner-logo {
+            flex: 0 0 auto;
+            width: 140px;
+            height: 140px;
+            margin: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+          }
+
+          .partner-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(0);
+            transition: all 0.4s ease;
+          }
+
+          .partner-logo:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+          }
+
+          @keyframes slideLeft {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+
+          /* ✅ للموبايل */
           @media (max-width: 768px) {
-            section {
-              padding: 50px 15px !important;
+            .partner-logo {
+              width: 90px;
+              height: 90px;
+              margin: 0 15px;
             }
             h2 {
-              font-size: 1.6rem !important;
-            }
-            div {
-              gap: 25px !important;
+              font-size: 1.5rem !important;
             }
           }
         `}
@@ -94,6 +98,8 @@ export default function PartnersSection() {
     </section>
   );
 }
+
+
 
 
 
