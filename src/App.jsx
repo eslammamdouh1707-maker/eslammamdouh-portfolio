@@ -164,6 +164,76 @@ export default function App() {
     </div>
   );
 }
+<style>
+{`
+  @keyframes fadeZoom { from {opacity:0;transform:scale(0.8);} to {opacity:1;transform:scale(1);} }
+  @keyframes fadeSlideUp { from {opacity:0;transform:translateY(40px);} to {opacity:1;transform:translateY(0);} }
+  @keyframes fadeSlideDown { from {opacity:0;transform:translateY(-40px);} to {opacity:1;transform:translateY(0);} }
+
+  /* ✅ قسم اللوجهات */
+  .partners-marquee {
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    background-color: #fff;
+    min-height: 160px; /* ارتفاع ثابت يضمن الظهور */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 80px;
+    animation: scrollX 14s linear infinite;
+  }
+
+  .partner-logo img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .partner-logo img:hover {
+    transform: scale(1.1);
+  }
+
+  @keyframes scrollX {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ✅ تحسين العرض على الموبايل */
+  @media (max-width: 768px) {
+    section {
+      padding: 50px 15px !important;
+    }
+    img[alt="Eslam Mamdouh"] {
+      width: 130px !important;
+      height: 130px !important;
+      margin-top: 60px !important;
+    }
+    h1 {
+      font-size: 1.5rem !important;
+      text-align: center !important;
+    }
+    .marquee-track {
+      gap: 40px;
+      animation-duration: 18s !important;
+    }
+    .partner-logo img {
+      width: 90px;
+      height: 90px;
+    }
+    .partners-marquee {
+      min-height: 140px !important; /* لضبط المساحة على الموبايل */
+    }
+  }
+`}
+</style>
 
 
 
