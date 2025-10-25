@@ -1,291 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eslam Mamdouh — Portfolio</title>
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Portfolio</title>
   <style>
-    :root {
-      --primary: #00A89B;
-      --accent: #00E0C6;
-      --dark: #0E4658;
-      --ink: #0F172A;
-      --base: #F7F9FB;
-      --white: #fff;
-      --radius: 20px;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
+    :root{
+      --primary:#00A89B; --accent:#00E0C6; --dark:#0E4658; --ink:#0F172A;
+      --base:#F7F9FB; --white:#fff; --radius:20px; --shadow:0 10px 30px rgba(0,0,0,.08)
     }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Poppins","Cairo",system-ui;background:var(--base);color:var(--ink);line-height:1.7;transition:.25s ease}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;border-radius:var(--radius)}
+    .container{width:min(1140px,92%);margin:auto}
+    .section{padding:80px 0}
+    .btn{padding:10px 18px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.25s}
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-ghost{border:1px solid rgba(15,23,42,.25)}
+    .chip{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.12);cursor:pointer;font-weight:600}
+    .chip.active{background:var(--dark);color:#fff}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Poppins","Cairo",system-ui;
-      background: var(--base);
-      color: var(--ink);
-      line-height: 1.7;
-      transition: .25s ease;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; border-radius: var(--radius); display: block; }
+    /* ===== Header (clean, wraps to 2 rows) ===== */
+    header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+    .nav-wrap{display:grid;gap:6px;padding:10px 0}
+    .topbar{display:flex;align-items:center;justify-content:space-between}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .navrow{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap}
+    .menu-btn{display:none;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.6);font-size:24px;cursor:pointer}
+    @media (max-width:860px){ .menu-btn{display:block} .navrow{display:none} }
 
-    /* ==== HEADER ==== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
+    /* ===== Mobile menu (transparent + blur) ===== */
+    .mobile-menu{position:fixed;inset:0;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);display:none;justify-content:flex-end;z-index:999}
+    .mobile-menu.active{display:flex}
+    .menu-panel{width:300px;max-width:86vw;height:100%;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);box-shadow:var(--shadow);padding:22px 18px;display:flex;flex-direction:column;gap:14px;transform:translateX(100%);animation:slideIn .35s ease forwards;border-top-left-radius:16px;border-bottom-left-radius:16px}
+    @keyframes slideIn{to{transform:translateX(0)}}
+    .menu-head{display:flex;justify-content:space-between;align-items:center}
+    .close-btn{font-size:28px;background:none;border:none;color:var(--dark);cursor:pointer}
+    .menu-links{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+    .menu-links a{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.65);box-shadow:var(--shadow);text-align:center}
+    .menu-actions{margin-top:auto;display:flex;gap:10px;justify-content:center}
 
-    .nav-container {
-      width: min(1140px,94%);
-      margin: auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      gap: 10px;
-    }
+    /* ===== Hero ===== */
+    .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:linear-gradient(135deg,#00A89B,#00E0C6)}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://i.postimg.cc/0yNRT1Wc/HZA-2.jpg') center/cover no-repeat;opacity:.35}
+    .hero .container{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;z-index:1}
+    @media(max-width:900px){.hero .container{grid-template-columns:1fr;text-align:center}}
+    .hero h1{font-size:clamp(32px,4vw,56px);line-height:1.15;margin-bottom:12px;font-weight:700}
+    .hero p{font-size:18px;opacity:.95;margin-bottom:24px}
+    .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+    @media(max-width:900px){.hero-buttons{justify-content:center}}
+    .avatar{width:300px;aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,.55);box-shadow:0 0 60px rgba(255,255,255,.25);margin-inline:auto}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-weight: 500;
-      flex-wrap: wrap;
-      justify-content: center;
-      flex-grow: 1;
-    }
+    /* ===== Grids & cards ===== */
+    .grid{display:grid;gap:20px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.grid-3{grid-template-columns:1fr}}
+    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:.25s}
+    .card:hover{transform:translateY(-6px)}
+    .thumb{aspect-ratio:16/10;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .meta{padding:14px 16px}
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: flex-end;
-      flex-shrink: 0;
-    }
+    /* ===== Footer ===== */
+    footer{background:linear-gradient(90deg,#00A89B,#00E0C6);color:#fff;text-align:center;padding:26px 0}
 
-    .btn {
-      padding: 8px 18px;
-      border-radius: 999px;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: .25s;
-    }
-
-    .btn-primary { background: var(--primary); color: #fff; }
-    .chip {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,.12);
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .chip.active { background: var(--dark); color: #fff; }
-
-    /* ==== MOBILE MENU ==== */
-    .menu-btn {
-      display: none;
-      font-size: 26px;
-      background: rgba(255,255,255,.6);
-      border: none;
-      border-radius: 50%;
-      width: 42px;
-      height: 42px;
-      cursor: pointer;
-    }
-
-    @media(max-width:850px) {
-      .nav-links { display: none; }
-      .menu-btn { display: block; }
-    }
-
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      display: none;
-      justify-content: flex-end;
-      z-index: 200;
-    }
-
-    .mobile-menu.active { display: flex; }
-
-    .menu-panel {
-      width: 280px;
-      height: 100%;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(14px);
-      display: flex;
-      flex-direction: column;
-      padding: 30px 20px;
-      box-shadow: var(--shadow);
-      transform: translateX(100%);
-      animation: slideIn .35s ease forwards;
-    }
-
-    @keyframes slideIn { to { transform: translateX(0); } }
-
-    .close-btn {
-      font-size: 26px;
-      align-self: flex-end;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--dark);
-    }
-
-    .menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .menu-links a {
-      text-align: center;
-      background: rgba(255,255,255,0.6);
-      padding: 10px;
-      border-radius: 10px;
-      transition: .25s;
-    }
-
-    .menu-links a:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .lang-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: auto;
-    }
-
-    /* ==== HERO ==== */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      overflow: hidden;
-      background: linear-gradient(135deg,#00A89B,#00E0C6);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('https://i.postimg.cc/0yNRT1Wc/HZA-2.jpg') center/cover no-repeat;
-      opacity: .35;
-    }
-
-    .hero .container {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 40px;
-      align-items: center;
-      z-index: 1;
-    }
-
-    @media(max-width:900px) {
-      .hero .container {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-
-    .hero h1 { font-size: clamp(32px,4vw,56px); line-height: 1.2; margin-bottom: 12px; font-weight: 700; }
-    .hero p { font-size: 18px; margin-bottom: 24px; opacity: .95; }
-
-    .avatar {
-      width: 300px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 6px solid rgba(255,255,255,.5);
-      margin: auto;
-    }
-
-    /* ==== SECTIONS ==== */
-    .section { padding: 80px 0; text-align: center; }
-    .grid { display: grid; gap: 20px; }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    @media(max-width:900px){ .grid-3 { grid-template-columns: repeat(2, 1fr); } }
-    @media(max-width:600px){ .grid-3 { grid-template-columns: 1fr; } }
-
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: .25s;
-    }
-
-    .card:hover { transform: translateY(-6px); }
-    .thumb { aspect-ratio: 16/10; overflow: hidden; }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-    footer {
-      background: linear-gradient(90deg,#00A89B,#00E0C6);
-      color: #fff;
-      text-align: center;
-      padding: 24px 0;
-    }
-
-    /* ==== ANIMATION ==== */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in-view { opacity: 1; transform: none; }
+    /* ===== Scroll reveal ===== */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in-view{opacity:1;transform:none}
   </style>
 </head>
 <body>
 
-  <!-- ==== HEADER ==== -->
+  <!-- ===== Header (no name) ===== -->
   <header>
-    <div class="nav-container">
-      <button id="menuBtn" class="menu-btn">☰</button>
-      <nav class="nav-links">
+    <div class="container nav-wrap">
+      <div class="topbar">
+        <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+        <div class="nav-actions">
+          <button id="arBtn" class="chip">AR</button>
+          <button id="enBtn" class="chip active">EN</button>
+          <a href="#contact" class="btn btn-primary" id="navContact">Contact</a>
+        </div>
+      </div>
+      <nav class="navrow">
         <a href="#about" id="navAbout">About</a>
         <a href="#info" id="navInfo">About Me</a>
         <a href="#services" id="navServices">Services</a>
         <a href="#partners" id="navPartners">Partners</a>
-        <a href="#contact" id="navContact" class="btn btn-primary">Contact</a>
       </nav>
-      <div class="nav-actions">
-        <button id="arBtn" class="chip">AR</button>
-        <button id="enBtn" class="chip active">EN</button>
-      </div>
     </div>
   </header>
 
-  <!-- ==== MOBILE MENU ==== -->
-  <div id="mobileMenu" class="mobile-menu">
+  <!-- ===== Mobile Menu ===== -->
+  <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true">
     <div class="menu-panel">
-      <button id="closeMenu" class="close-btn">×</button>
-      <div class="menu-links">
-        <a href="#about" onclick="closeMenu()">About</a>
-        <a href="#info" onclick="closeMenu()">About Me</a>
-        <a href="#services" onclick="closeMenu()">Services</a>
-        <a href="#partners" onclick="closeMenu()">Partners</a>
-        <a href="#contact" onclick="closeMenu()">Contact</a>
+      <div class="menu-head">
+        <strong id="menuTitle">Menu</strong>
+        <button id="closeMenu" class="close-btn" aria-label="Close menu">×</button>
       </div>
-      <div class="lang-actions">
+      <div class="menu-links">
+        <a href="#about" id="mNavAbout" onclick="closeMenu()">About</a>
+        <a href="#info" id="mNavInfo" onclick="closeMenu()">About Me</a>
+        <a href="#services" id="mNavServices" onclick="closeMenu()">Services</a>
+        <a href="#partners" id="mNavPartners" onclick="closeMenu()">Partners</a>
+        <a href="#contact" id="mNavContact" onclick="closeMenu()">Contact</a>
+      </div>
+      <div class="menu-actions">
         <button id="arBtnMenu" class="chip">AR</button>
         <button id="enBtnMenu" class="chip active">EN</button>
       </div>
     </div>
   </div>
 
-  <!-- ==== HERO ==== -->
+  <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="container">
-      <div class="hero-text reveal">
+      <div class="hero-text reveal" style="transition-delay:.05s">
         <h1 id="heroTitle">Your Brand Is in Safe Hands — Strategy, Execution, Results.</h1>
         <p id="heroSub">We craft and execute full-funnel digital strategies that drive real growth.</p>
         <div class="hero-buttons">
@@ -293,21 +125,280 @@
           <a href="#contact" class="btn btn-ghost" id="btnContact">Contact Me</a>
         </div>
       </div>
-      <div class="reveal"><div class="avatar"><img src="https://i.postimg.cc/QtwqKWTM/me.jpg" alt=""></div></div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="avatar">
+          <img src="https://i.postimg.cc/CKnW9Zfp/unnamed.jpg" alt="Profile Photo" loading="lazy">
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- باقي الأقسام نفس النسخة الكاملة القديمة بالضبط -->
-  <!-- About Work + About Me + Services + Partners + Contact + Footer -->
+  <!-- ===== About Work ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 id="aboutTitle" class="reveal">About</h2>
+      <p id="aboutText" class="reveal" style="transition-delay:.05s">
+        Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.
+      </p>
+      <p id="infoTextUnder" class="reveal" style="transition-delay:.1s">
+        Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== About Me (6 cards) ===== -->
+  <section id="info" class="section">
+    <div class="container">
+      <h2 id="infoTitle" class="reveal">About Me</h2>
+      <div class="grid grid-3">
+        <div class="card reveal" style="transition-delay:.05s">
+          <div class="thumb"><img src="https://i.postimg.cc/QxLSD1X4/Campaign-Results2.jpg" alt="Campaigns Results"></div>
+          <div class="meta">
+            <h3 id="resultTitle">Campaigns Results</h3>
+            <p id="resultText">1M+ impressions, 5.2x average ROAS, CTR up to 11.8%.</p>
+          </div>
+        </div>
+        <div class="card reveal" style="transition-delay:.1s">
+          <div class="thumb"><img src="https://i.postimg.cc/CxrqhpGY/Education5.jpg" alt="Education"></div>
+          <div class="meta">
+            <h3 id="eduTitle">Education</h3>
+            <p id="eduText">Certified by Udemy, Meta Blueprint, and Google Digital Garage.</p>
+          </div>
+        </div>
+        <div class="card reveal" style="transition-delay:.15s">
+          <div class="thumb"><img src="https://i.postimg.cc/8zSyRW9V/Experience1.jpg" alt="Experience"></div>
+          <div class="meta">
+            <h3 id="expTitle">Experience</h3>
+            <p id="expText">Media Buyer & Strategist — Freelance<br>Marketing Lead — Easy Furniture<br>Ads Manager — Djeep Egypt</p>
+          </div>
+        </div>
+        <div class="card reveal" style="transition-delay:.2s">
+          <div class="thumb"><img src="https://i.postimg.cc/9FWRyQ1H/Courses6.jpg" alt="Courses"></div>
+          <div class="meta">
+            <h3 id="courseTitle">Courses</h3>
+            <p id="courseText">Advanced Google Ads, Shopify, and Data Analytics.</p>
+          </div>
+        </div>
+        <div class="card reveal" style="transition-delay:.25s">
+          <div class="thumb"><img src="https://i.postimg.cc/Przbk7Vd/Skills3.jpg" alt="Skills"></div>
+          <div class="meta">
+            <h3 id="skillsTitle">Skills</h3>
+            <p id="skillsText">Media Buying, Copywriting, AI Marketing, E-Commerce Growth.</p>
+          </div>
+        </div>
+        <div class="card reveal" style="transition-delay:.3s">
+          <div class="thumb"><img src="https://i.postimg.cc/0QwmXXJ1/Languages4.jpg" alt="Languages"></div>
+          <div class="meta">
+            <h3 id="langTitle">Languages</h3>
+            <p id="langText">Arabic (Native) — English (Professional).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services (6) ===== -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 id="servicesTitle" class="reveal">Services</h2>
+      <div class="grid grid-3">
+        <div class="card reveal" style="transition-delay:.05s">
+          <div class="thumb"><img src="https://i.postimg.cc/wBB5Wk5p/service-ads.jpg" alt="Ads Management"></div>
+          <div class="meta"><h3 id="adsTitle">Ads Management</h3><p id="adsDesc">Plan, run, and optimize for top ROI.</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.1s">
+          <div class="thumb"><img src="https://i.postimg.cc/QdzV3kGs/service-design.jpg" alt="Ad & Social Design"></div>
+          <div class="meta"><h3 id="designTitle">Ad & Social Design</h3><p id="designDesc">Cohesive visual identity and engaging creatives.</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.15s">
+          <div class="thumb"><img src="https://i.postimg.cc/CKWZjCmB/service-copy.jpg" alt="Copywriting"></div>
+          <div class="meta"><h3 id="copyTitle">Copywriting</h3><p id="copyDesc">Clear, persuasive, conversion-focused copy.</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.2s">
+          <div class="thumb"><img src="https://i.postimg.cc/02qYgvGS/service-ai.jpg" alt="AI for Marketing"></div>
+          <div class="meta"><h3 id="aiTitle">AI for Marketing</h3><p id="aiDesc">Smart automation for analysis & ideation.</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.25s">
+          <div class="thumb"><img src="https://i.postimg.cc/RhGVbwLr/service-shopify.jpg" alt="Shopify Stores"></div>
+          <div class="meta"><h3 id="shopifyTitle">Shopify Stores</h3><p id="shopifyDesc">Build and optimize seamless stores.</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.3s">
+          <div class="thumb"><img src="https://i.postimg.cc/rsGtydGH/service-analytics.jpg" alt="Analytics & Reports"></div>
+          <div class="meta"><h3 id="analyticsTitle">Analytics & Reports</h3><p id="analyticsDesc">Dashboards that speed decisions.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Success Partners (7) ===== -->
+  <section id="partners" class="section">
+    <div class="container">
+      <h2 id="partnersTitle" class="reveal">Success Partners</h2>
+      <p id="partnersText" class="reveal" style="transition-delay:.05s">
+        Brands I’ve worked with — gaining practical insight into the Egyptian market and beyond.
+      </p>
+      <div class="grid grid-3">
+        <div class="card reveal" style="transition-delay:.05s">
+          <div class="thumb"><img src="https://i.postimg.cc/zXQBV31J/Premium-property.png" alt="Mix Mirror"></div>
+          <div class="meta"><h3 id="mixTitle">Mix Mirror</h3><p id="mixDesc">Brand Identity & Ads</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.1s">
+          <div class="thumb"><img src="https://i.postimg.cc/9M4V3YrJ/Untitled-1-bny.png" alt="Zain Furniture"></div>
+          <div class="meta"><h3 id="zainTitle">Zain Furniture</h3><p id="zainDesc">Page, Ads & Creatives</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.15s">
+          <div class="thumb"><img src="https://i.postimg.cc/rwvNC8xY/336878626-724080602833993-1539476635948229214-n.jpg" alt="Al-Bayt Al-Asry"></div>
+          <div class="meta"><h3 id="asryTitle">البيت العصري</h3><p id="asryDesc">Page, Ads & Creatives</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.2s">
+          <div class="thumb"><img src="https://i.postimg.cc/pLYLkCFP/Whats-App-Image-2025-01-19-at-21-13-22-4483f429.jpg" alt="Al-Mokhtar"></div>
+          <div class="meta"><h3 id="mokhtarTitle">المختار للأثاث</h3><p id="mokhtarDesc">Page, Ads & Creatives</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.25s">
+          <div class="thumb"><img src="https://i.postimg.cc/fbqtjCGk/475766513-597064353190714-8491457059691776769-n.jpg" alt="Bta3 Chocolate"></div>
+          <div class="meta"><h3 id="chocoTitle">بتاع شيكولاتة</h3><p id="chocoDesc">Ads</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.3s">
+          <div class="thumb"><img src="https://i.postimg.cc/j2ScH5nW/djeep.jpg" alt="Djeep Egypt"></div>
+          <div class="meta"><h3 id="djeepTitle">Djeep Egypt</h3><p id="djeepDesc">Social / Performance</p></div>
+        </div>
+        <div class="card reveal" style="transition-delay:.35s">
+          <div class="thumb"><img src="https://i.postimg.cc/3Nx1XR0m/easy.jpg" alt="Easy Furniture"></div>
+          <div class="meta"><h3 id="easyTitle">Easy Furniture</h3><p id="easyDesc">Creatives / Conversion</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" class="section">
+    <div class="container" style="padding:30px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-radius:20px;box-shadow:var(--shadow);text-align:center">
+      <h2 id="contactTitle" class="reveal">Contact</h2>
+      <p id="contactText" class="reveal" style="transition-delay:.05s">
+        📩 mamdouheslam913@gmail.com<br>📞 +20 1091837869 — +20 1110167731
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p id="footerText">© 2025 Eslam Mamdouh — All Rights Reserved.</p>
+  </footer>
 
   <script>
-    // Animation
+    /* ===== Scroll reveal ===== */
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target);} })
     },{threshold:.15});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Mobile menu
+    /* ===== Translations (EN/AR) ===== */
+    const dict = {
+      en:{
+        menuTitle:'Menu',
+        navAbout:'About', navInfo:'About Me', navServices:'Services', navPartners:'Partners', navContact:'Contact',
+        mNavAbout:'About', mNavInfo:'About Me', mNavServices:'Services', mNavPartners:'Partners', mNavContact:'Contact',
+        heroTitle:'Your Brand Is in Safe Hands — Strategy, Execution, Results.',
+        heroSub:'We craft and execute full-funnel digital strategies that drive real growth.',
+        btnServices:'Services', btnContact:'Contact Me',
+        aboutTitle:'About',
+        aboutText:'Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.',
+        infoTextUnder:'Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.',
+        infoTitle:'About Me',
+        resultTitle:'Campaigns Results', resultText:'1M+ impressions, 5.2x average ROAS, CTR up to 11.8%.',
+        eduTitle:'Education', eduText:'Certified by Udemy, Meta Blueprint, and Google Digital Garage.',
+        expTitle:'Experience', expText:'Media Buyer & Strategist — Freelance\nMarketing Lead — Easy Furniture\nAds Manager — Djeep Egypt',
+        courseTitle:'Courses', courseText:'Advanced Google Ads, Shopify, and Data Analytics.',
+        skillsTitle:'Skills', skillsText:'Media Buying, Copywriting, AI Marketing, E-Commerce Growth.',
+        langTitle:'Languages', langText:'Arabic (Native) — English (Professional).',
+        servicesTitle:'Services',
+        adsTitle:'Ads Management', adsDesc:'Plan, run, and optimize for top ROI.',
+        designTitle:'Ad & Social Design', designDesc:'Cohesive visual identity and engaging creatives.',
+        copyTitle:'Copywriting', copyDesc:'Clear, persuasive, conversion-focused copy.',
+        aiTitle:'AI for Marketing', aiDesc:'Smart automation for analysis & ideation.',
+        shopifyTitle:'Shopify Stores', shopifyDesc:'Build and optimize seamless stores.',
+        analyticsTitle:'Analytics & Reports', analyticsDesc:'Dashboards that speed decisions.',
+        partnersTitle:'Success Partners',
+        partnersText:'Brands I’ve worked with — gaining practical insight into the Egyptian market and beyond.',
+        mixTitle:'Mix Mirror', mixDesc:'Brand Identity & Ads',
+        zainTitle:'Zain Furniture', zainDesc:'Page, Ads & Creatives',
+        asryTitle:'Al-Bayt Al-Asry', asryDesc:'Page, Ads & Creatives',
+        mokhtarTitle:'Al-Mokhtar Furniture', mokhtarDesc:'Page, Ads & Creatives',
+        chocoTitle:'Bta3 Chocolate', chocoDesc:'Ads',
+        djeepTitle:'Djeep Egypt', djeepDesc:'Social / Performance',
+        easyTitle:'Easy Furniture', easyDesc:'Creatives / Conversion',
+        contactTitle:'Contact', contactText:'📩 mamdouheslam913@gmail.com<br>📞 +20 1091837869 — +20 1110167731',
+        footerText:'© 2025 Eslam Mamdouh — All Rights Reserved.'
+      },
+      ar:{
+        menuTitle:'القائمة',
+        navAbout:'عن العمل', navInfo:'نبذة عني', navServices:'الخدمات', navPartners:'شركاء النجاح', navContact:'تواصل',
+        mNavAbout:'عن العمل', mNavInfo:'نبذة عني', mNavServices:'الخدمات', mNavPartners:'شركاء النجاح', mNavContact:'تواصل',
+        heroTitle:'براندك في إيد أمينة — تفكير، تنفيذ، ونتائج.',
+        heroSub:'نصمم وننفّذ استراتيجيات تسويق رقمية متكاملة تحقق نموًا حقيقيًا.',
+        btnServices:'الخدمات', btnContact:'تواصل معي',
+        aboutTitle:'عن العمل',
+        aboutText:'التسويق مش إعلان... التسويق تجربة تُبنى بالنية والشغف والتنظيم.',
+        infoTextUnder:'أعمل في التسويق الرقمي منذ أكثر من 9 سنوات — إدارة حملات، بناء هوية، وتحليلات بنتائج ملموسة.',
+        infoTitle:'نبذة عني',
+        resultTitle:'نتائج الحملات', resultText:'+1M انطباع، ROAS متوسط 5.2x، CTR حتى 11.8%.',
+        eduTitle:'التعليم', eduText:'شهادات من Udemy وMeta Blueprint وGoogle Digital Garage.',
+        expTitle:'الخبرات', expText:'Media Buyer & Strategist — Freelance\nMarketing Lead — Easy Furniture\nAds Manager — Djeep Egypt',
+        courseTitle:'الدورات', courseText:'Google Ads وShopify وData Analytics (متقدم).',
+        skillsTitle:'المهارات', skillsText:'Media Buying، Copywriting، AI Marketing، نمو المتاجر.',
+        langTitle:'اللغات', langText:'العربية (الأم) — الإنجليزية (محترف).',
+        servicesTitle:'الخدمات',
+        adsTitle:'إدارة الحملات الإعلانية', adsDesc:'تخطيط وتنفيذ وتحسين لأفضل عائد.',
+        designTitle:'تصميم الإعلانات والسوشيال', designDesc:'هوية مرئية متسقة وكرياتيف جذاب.',
+        copyTitle:'كتابة المحتوى', copyDesc:'رسائل واضحة ومقنعة تركّز على التحويل.',
+        aiTitle:'الذكاء الاصطناعي في التسويق', aiDesc:'أتمتة ذكية للتحليل والإبداع.',
+        shopifyTitle:'متاجر شوبيفاي', shopifyDesc:'بناء وتحسين تجربة شراء سلسة.',
+        analyticsTitle:'تحليلات وتقارير', analyticsDesc:'لوحات متابعة تُسرّع القرار.',
+        partnersTitle:'شركاء النجاح',
+        partnersText:'علامات تجارية تعاونت معها — خبرة عملية في السوق المصري وما بعده.',
+        mixTitle:'Mix Mirror', mixDesc:'هوية بصرية وإعلانات',
+        zainTitle:'Zain Furniture', zainDesc:'صفحة وإعلانات وتصميمات',
+        asryTitle:'البيت العصري', asryDesc:'صفحة وإعلانات وتصميمات',
+        mokhtarTitle:'المختار للأثاث', mokhtarDesc:'صفحة وإعلانات وتصميمات',
+        chocoTitle:'بتاع شيكولاتة', chocoDesc:'إعلانات',
+        djeepTitle:'Djeep Egypt', djeepDesc:'سوشيال / أداء',
+        easyTitle:'Easy Furniture', easyDesc:'كرياتيف / تحويلات',
+        contactTitle:'تواصل', contactText:'📩 mamdouheslam913@gmail.com<br>📞 01091837869 — 01110167731',
+        footerText:'© 2025 Eslam Mamdouh — جميع الحقوق محفوظة.'
+      }
+    };
+
+    const ids = [
+      'menuTitle',
+      'navAbout','navInfo','navServices','navPartners','navContact',
+      'mNavAbout','mNavInfo','mNavServices','mNavPartners','mNavContact',
+      'heroTitle','heroSub','btnServices','btnContact',
+      'aboutTitle','aboutText','infoTextUnder','infoTitle',
+      'resultTitle','resultText','eduTitle','eduText','expTitle','expText',
+      'courseTitle','courseText','skillsTitle','skillsText','langTitle','langText',
+      'servicesTitle','adsTitle','adsDesc','designTitle','designDesc','copyTitle','copyDesc','aiTitle','aiDesc','shopifyTitle','shopifyDesc','analyticsTitle','analyticsDesc',
+      'partnersTitle','partnersText','mixTitle','mixDesc','zainTitle','zainDesc','asryTitle','asryDesc','mokhtarTitle','mokhtarDesc','chocoTitle','chocoDesc','djeepTitle','djeepDesc','easyTitle','easyDesc',
+      'contactTitle','contactText','footerText'
+    ];
+
+    function switchLang(lang){
+      const d=dict[lang];
+      ids.forEach(id=>{ const el=document.getElementById(id); if(el && d[id]!==undefined){ el.innerHTML=d[id]; }});
+      document.body.dir = (lang==='ar') ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+      const isAr = (lang==='ar');
+      ['arBtn','arBtnMenu'].forEach(i=>document.getElementById(i)?.classList.toggle('active',isAr));
+      ['enBtn','enBtnMenu'].forEach(i=>document.getElementById(i)?.classList.toggle('active',!isAr));
+    }
+
+    /* Bind language */
+    document.getElementById('arBtn').addEventListener('click',()=>switchLang('ar'));
+    document.getElementById('enBtn').addEventListener('click',()=>switchLang('en'));
+    document.getElementById('arBtnMenu').addEventListener('click',()=>{switchLang('ar'); closeMenu();});
+    document.getElementById('enBtnMenu').addEventListener('click',()=>{switchLang('en'); closeMenu();});
+    switchLang('en'); // default
+
+    /* Mobile menu */
     const menuBtn=document.getElementById('menuBtn');
     const closeMenuBtn=document.getElementById('closeMenu');
     const mobileMenu=document.getElementById('mobileMenu');
@@ -315,6 +406,12 @@
     function closeMenu(){ mobileMenu.classList.remove('active'); }
     menuBtn.addEventListener('click',openMenu);
     closeMenuBtn.addEventListener('click',closeMenu);
+    mobileMenu.addEventListener('click',e=>{ if(e.target===mobileMenu) closeMenu(); });
+
+    /* Scroll reveal attach */
+    document.querySelectorAll('.reveal').forEach(el=>{
+      // already attached above; keep here if content injected later
+    });
   </script>
 </body>
 </html>
