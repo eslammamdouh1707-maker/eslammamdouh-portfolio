@@ -86,6 +86,7 @@
       </div>
       <nav class="navrow">
         <a href="#about" id="navAbout">About</a>
+        <a href="#work" id="navWork">My Work</a>
         <a href="#info" id="navInfo">About Me</a>
         <a href="#services" id="navServices">Services</a>
         <a href="#partners" id="navPartners">Partners</a>
@@ -102,6 +103,7 @@
       </div>
       <div class="menu-links">
         <a href="#about" id="mNavAbout" onclick="closeMenu()">About</a>
+        <a href="#work" id="mNavWork" onclick="closeMenu()">My Work</a>
         <a href="#info" id="mNavInfo" onclick="closeMenu()">About Me</a>
         <a href="#services" id="mNavServices" onclick="closeMenu()">Services</a>
         <a href="#partners" id="mNavPartners" onclick="closeMenu()">Partners</a>
@@ -143,6 +145,23 @@
       <p id="infoTextUnder" class="reveal" style="transition-delay:.1s">
         Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.
       </p>
+    </div>
+  </section>
+
+  <!-- ===== My Work (Video Section) ===== -->
+  <section id="work" class="section center">
+    <div class="container glass reveal" style="padding: 40px; border-radius: 20px;">
+      <h2 id="workTitle">My Work</h2>
+      <p id="workDesc" style="margin-bottom: 20px;">A quick look at some of my campaign results.</p>
+
+      <div class="video-frame"
+           style="position: relative; max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden;
+                  box-shadow: 0 10px 40px rgba(0,0,0,0.2); background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);">
+        <video autoplay loop muted playsinline controls style="width: 100%; height: auto; display: block;">
+          <source src="videos/campaign-results.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
   </section>
 
@@ -296,14 +315,15 @@
     const dict = {
       en:{
         menuTitle:'Menu',
-        navAbout:'About', navInfo:'About Me', navServices:'Services', navPartners:'Partners', navContact:'Contact',
-        mNavAbout:'About', mNavInfo:'About Me', mNavServices:'Services', mNavPartners:'Partners', mNavContact:'Contact',
+        navAbout:'About', navWork:'My Work', navInfo:'About Me', navServices:'Services', navPartners:'Partners', navContact:'Contact',
+        mNavAbout:'About', mNavWork:'My Work', mNavInfo:'About Me', mNavServices:'Services', mNavPartners:'Partners', mNavContact:'Contact',
         heroTitle:'Your Brand Is in Safe Hands — Strategy, Execution, Results.',
         heroSub:'We craft and execute full-funnel digital strategies that drive real growth.',
         btnServices:'Services', btnContact:'Contact Me',
         aboutTitle:'About',
         aboutText:'Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.',
         infoTextUnder:'Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.',
+        workTitle:'My Work', workDesc:'A quick look at some of my campaign results.',
         infoTitle:'About Me',
         resultTitle:'Campaigns Results', resultText:'1M+ impressions, 5.2x average ROAS, CTR up to 11.8%.',
         eduTitle:'Education', eduText:'Certified by Udemy, Meta Blueprint, and Google Digital Garage.',
@@ -332,14 +352,15 @@
       },
       ar:{
         menuTitle:'القائمة',
-        navAbout:'عن العمل', navInfo:'نبذة عني', navServices:'الخدمات', navPartners:'شركاء النجاح', navContact:'تواصل',
-        mNavAbout:'عن العمل', mNavInfo:'نبذة عني', mNavServices:'الخدمات', mNavPartners:'شركاء النجاح', mNavContact:'تواصل',
+        navAbout:'عن العمل', navWork:'أعمالي', navInfo:'نبذة عني', navServices:'الخدمات', navPartners:'شركاء النجاح', navContact:'تواصل',
+        mNavAbout:'عن العمل', mNavWork:'أعمالي', mNavInfo:'نبذة عني', mNavServices:'الخدمات', mNavPartners:'شركاء النجاح', mNavContact:'تواصل',
         heroTitle:'براندك في إيد أمينة — تفكير، تنفيذ، ونتائج.',
         heroSub:'نصمم وننفّذ استراتيجيات تسويق رقمية متكاملة تحقق نموًا حقيقيًا.',
         btnServices:'الخدمات', btnContact:'تواصل معي',
         aboutTitle:'عن العمل',
         aboutText:'التسويق مش إعلان... التسويق تجربة تُبنى بالنية والشغف والتنظيم.',
         infoTextUnder:'أعمل في التسويق الرقمي منذ أكثر من 9 سنوات — إدارة حملات، بناء هوية، وتحليلات بنتائج ملموسة.',
+        workTitle:'أعمالي', workDesc:'نظرة سريعة على بعض نتائج الحملات الإعلانية.',
         infoTitle:'نبذة عني',
         resultTitle:'نتائج الحملات', resultText:'+1M انطباع، ROAS متوسط 5.2x، CTR حتى 11.8%.',
         eduTitle:'التعليم', eduText:'شهادات من Udemy وMeta Blueprint وGoogle Digital Garage.',
@@ -370,10 +391,12 @@
 
     const ids = [
       'menuTitle',
-      'navAbout','navInfo','navServices','navPartners','navContact',
-      'mNavAbout','mNavInfo','mNavServices','mNavPartners','mNavContact',
+      'navAbout','navWork','navInfo','navServices','navPartners','navContact',
+      'mNavAbout','mNavWork','mNavInfo','mNavServices','mNavPartners','mNavContact',
       'heroTitle','heroSub','btnServices','btnContact',
-      'aboutTitle','aboutText','infoTextUnder','infoTitle',
+      'aboutTitle','aboutText','infoTextUnder',
+      'workTitle','workDesc',
+      'infoTitle',
       'resultTitle','resultText','eduTitle','eduText','expTitle','expText',
       'courseTitle','courseText','skillsTitle','skillsText','langTitle','langText',
       'servicesTitle','adsTitle','adsDesc','designTitle','designDesc','copyTitle','copyDesc','aiTitle','aiDesc','shopifyTitle','shopifyDesc','analyticsTitle','analyticsDesc',
@@ -408,13 +431,13 @@
     closeMenuBtn.addEventListener('click',closeMenu);
     mobileMenu.addEventListener('click',e=>{ if(e.target===mobileMenu) closeMenu(); });
 
-    /* Scroll reveal attach */
-    document.querySelectorAll('.reveal').forEach(el=>{
-      // already attached above; keep here if content injected later
-    });
+    /* Scroll reveal attach (already registered above) */
+    document.querySelectorAll('.reveal').forEach(el=>{});
   </script>
 </body>
 </html>
+
+
 
 
 
