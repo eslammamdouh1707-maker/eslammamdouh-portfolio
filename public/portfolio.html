@@ -15,13 +15,14 @@
     img{max-width:100%;display:block;border-radius:var(--radius)}
     .container{width:min(1140px,92%);margin:auto}
     .section{padding:80px 0}
+    .center{text-align:center}
     .btn{padding:10px 18px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.25s}
     .btn-primary{background:var(--primary);color:#fff}
     .btn-ghost{border:1px solid rgba(15,23,42,.25)}
     .chip{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.12);cursor:pointer;font-weight:600}
     .chip.active{background:var(--dark);color:#fff}
 
-    /* ===== Header (clean, wraps to 2 rows) ===== */
+    /* ===== Header (2-row capable) ===== */
     header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.05)}
     .nav-wrap{display:grid;gap:6px;padding:10px 0}
     .topbar{display:flex;align-items:center;justify-content:space-between}
@@ -31,7 +32,7 @@
     @media (max-width:860px){ .menu-btn{display:block} .navrow{display:none} }
 
     /* ===== Mobile menu (transparent + blur) ===== */
-    .mobile-menu{position:fixed;inset:0;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);display:none;justify-content:flex-end;z-index:999}
+    .mobile-menu{position:fixed;inset:0;background:rgba(15,23,42,.15);backdrop-filter:blur(10px);display:none;justify-content:flex-end;z-index:999}
     .mobile-menu.active{display:flex}
     .menu-panel{width:300px;max-width:86vw;height:100%;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);box-shadow:var(--shadow);padding:22px 18px;display:flex;flex-direction:column;gap:14px;transform:translateX(100%);animation:slideIn .35s ease forwards;border-top-left-radius:16px;border-bottom-left-radius:16px}
     @keyframes slideIn{to{transform:translateX(0)}}
@@ -66,14 +67,14 @@
     /* ===== Footer ===== */
     footer{background:linear-gradient(90deg,#00A89B,#00E0C6);color:#fff;text-align:center;padding:26px 0}
 
-    /* ===== Scroll reveal ===== */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    /* ===== Scroll reveal (smooth) ===== */
+    .reveal{opacity:0;transform:translateY(36px);transition:opacity 1s ease,transform 1s ease}
     .reveal.in-view{opacity:1;transform:none}
   </style>
 </head>
 <body>
 
-  <!-- ===== Header (no name) ===== -->
+  <!-- ===== Header (no personal name) ===== -->
   <header>
     <div class="container nav-wrap">
       <div class="topbar">
@@ -90,6 +91,7 @@
         <a href="#info" id="navInfo">About Me</a>
         <a href="#services" id="navServices">Services</a>
         <a href="#partners" id="navPartners">Partners</a>
+        <a href="#contact" id="navContact2">Contact</a>
       </nav>
     </div>
   </header>
@@ -129,7 +131,8 @@
       </div>
       <div class="reveal" style="transition-delay:.1s">
         <div class="avatar">
-          <img src="https://i.postimg.cc/CKnW9Zfp/unnamed.jpg" alt="Profile Photo" loading="lazy">
+          <!-- ✅ your image -->
+          <img src="https://i.postimg.cc/pXdxT1bh/unnamed.jpg" alt="Profile Photo" loading="lazy">
         </div>
       </div>
     </div>
@@ -148,17 +151,17 @@
     </div>
   </section>
 
-  <!-- ===== My Work (Video Section) ===== -->
+  <!-- ===== My Work (Video) ===== -->
   <section id="work" class="section center">
     <div class="container glass reveal" style="padding: 40px; border-radius: 20px;">
-      <h2 id="workTitle">My Work</h2>
-      <p id="workDesc" style="margin-bottom: 20px;">A quick look at some of my campaign results.</p>
+      <h2 id="workTitle" class="reveal">My Work</h2>
+      <p id="workDesc" class="reveal" style="margin-bottom: 20px; transition-delay:.05s;">A quick look at some of my campaign results.</p>
 
-      <div class="video-frame"
+      <div class="video-frame reveal"
            style="position: relative; max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden;
                   box-shadow: 0 10px 40px rgba(0,0,0,0.2); background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);">
         <video autoplay loop muted playsinline controls style="width: 100%; height: auto; display: block;">
-          <source src="videos/campaign-results.mp4" type="video/mp4">
+          <source src="videos/campaign-results-fixed.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -305,9 +308,14 @@
   </footer>
 
   <script>
-    /* ===== Scroll reveal ===== */
+    /* ===== Scroll reveal (attach) ===== */
     const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target);} })
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
     },{threshold:.15});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
@@ -391,7 +399,7 @@
 
     const ids = [
       'menuTitle',
-      'navAbout','navWork','navInfo','navServices','navPartners','navContact',
+      'navAbout','navWork','navInfo','navServices','navPartners','navContact','navContact2',
       'mNavAbout','mNavWork','mNavInfo','mNavServices','mNavPartners','mNavContact',
       'heroTitle','heroSub','btnServices','btnContact',
       'aboutTitle','aboutText','infoTextUnder',
@@ -406,7 +414,10 @@
 
     function switchLang(lang){
       const d=dict[lang];
-      ids.forEach(id=>{ const el=document.getElementById(id); if(el && d[id]!==undefined){ el.innerHTML=d[id]; }});
+      ids.forEach(id=>{
+        const el=document.getElementById(id);
+        if(el && d[id]!==undefined){ el.innerHTML=d[id]; }
+      });
       document.body.dir = (lang==='ar') ? 'rtl' : 'ltr';
       document.documentElement.lang = lang;
       const isAr = (lang==='ar');
@@ -414,12 +425,12 @@
       ['enBtn','enBtnMenu'].forEach(i=>document.getElementById(i)?.classList.toggle('active',!isAr));
     }
 
-    /* Bind language */
+    /* Language bindings + default */
     document.getElementById('arBtn').addEventListener('click',()=>switchLang('ar'));
     document.getElementById('enBtn').addEventListener('click',()=>switchLang('en'));
     document.getElementById('arBtnMenu').addEventListener('click',()=>{switchLang('ar'); closeMenu();});
     document.getElementById('enBtnMenu').addEventListener('click',()=>{switchLang('en'); closeMenu();});
-    switchLang('en'); // default
+    switchLang('en'); // default EN
 
     /* Mobile menu */
     const menuBtn=document.getElementById('menuBtn');
@@ -430,12 +441,15 @@
     menuBtn.addEventListener('click',openMenu);
     closeMenuBtn.addEventListener('click',closeMenu);
     mobileMenu.addEventListener('click',e=>{ if(e.target===mobileMenu) closeMenu(); });
-
-    /* Scroll reveal attach (already registered above) */
-    document.querySelectorAll('.reveal').forEach(el=>{});
   </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
