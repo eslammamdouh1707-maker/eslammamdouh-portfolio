@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Portfolio</title>
+  <title>Eslam Mamdouh - Media Buyer Portfolio</title>
   <style>
     :root{
       --primary:#00A89B; --accent:#00E0C6; --dark:#0E4658; --ink:#0F172A;
@@ -22,7 +22,7 @@
     .chip{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.12);cursor:pointer;font-weight:600}
     .chip.active{background:var(--dark);color:#fff}
 
-    /* ===== Header (2-row capable) ===== */
+    /* ===== Header ===== */
     header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.05)}
     .nav-wrap{display:grid;gap:6px;padding:10px 0}
     .topbar{display:flex;align-items:center;justify-content:space-between}
@@ -30,17 +30,6 @@
     .navrow{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap}
     .menu-btn{display:none;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.6);font-size:24px;cursor:pointer}
     @media (max-width:860px){ .menu-btn{display:block} .navrow{display:none} }
-
-    /* ===== Mobile menu (transparent + blur) ===== */
-    .mobile-menu{position:fixed;inset:0;background:rgba(15,23,42,.15);backdrop-filter:blur(10px);display:none;justify-content:flex-end;z-index:999}
-    .mobile-menu.active{display:flex}
-    .menu-panel{width:300px;max-width:86vw;height:100%;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);box-shadow:var(--shadow);padding:22px 18px;display:flex;flex-direction:column;gap:14px;transform:translateX(100%);animation:slideIn .35s ease forwards;border-top-left-radius:16px;border-bottom-left-radius:16px}
-    @keyframes slideIn{to{transform:translateX(0)}}
-    .menu-head{display:flex;justify-content:space-between;align-items:center}
-    .close-btn{font-size:28px;background:none;border:none;color:var(--dark);cursor:pointer}
-    .menu-links{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-    .menu-links a{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.65);box-shadow:var(--shadow);text-align:center}
-    .menu-actions{margin-top:auto;display:flex;gap:10px;justify-content:center}
 
     /* ===== Hero ===== */
     .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:linear-gradient(135deg,#00A89B,#00E0C6)}
@@ -53,7 +42,7 @@
     @media(max-width:900px){.hero-buttons{justify-content:center}}
     .avatar{width:300px;aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,.55);box-shadow:0 0 60px rgba(255,255,255,.25);margin-inline:auto}
 
-    /* ===== Grids & cards ===== */
+    /* ===== General Grid Styles ===== */
     .grid{display:grid;gap:20px}
     .grid-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr)}}
@@ -64,17 +53,14 @@
     .thumb img{width:100%;height:100%;object-fit:cover}
     .meta{padding:14px 16px}
 
-    /* ===== Footer ===== */
-    footer{background:linear-gradient(90deg,#00A89B,#00E0C6);color:#fff;text-align:center;padding:26px 0}
-
-    /* ===== Scroll reveal (smooth) ===== */
+    /* ===== Scroll reveal ===== */
     .reveal{opacity:0;transform:translateY(36px);transition:opacity 1s ease,transform 1s ease}
     .reveal.in-view{opacity:1;transform:none}
   </style>
 </head>
 <body>
 
-  <!-- ===== Header (no personal name) ===== -->
+  <!-- ===== Header ===== -->
   <header>
     <div class="container nav-wrap">
       <div class="topbar">
@@ -82,7 +68,6 @@
         <div class="nav-actions">
           <button id="arBtn" class="chip">AR</button>
           <button id="enBtn" class="chip active">EN</button>
-          <a href="#contact" class="btn btn-primary" id="navContact">Contact</a>
         </div>
       </div>
       <nav class="navrow">
@@ -91,32 +76,10 @@
         <a href="#info" id="navInfo">About Me</a>
         <a href="#services" id="navServices">Services</a>
         <a href="#partners" id="navPartners">Partners</a>
-        <a href="#contact" id="navContact2">Contact</a>
+        <a href="#contact" id="navContact">Contact</a>
       </nav>
     </div>
   </header>
-
-  <!-- ===== Mobile Menu ===== -->
-  <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true">
-    <div class="menu-panel">
-      <div class="menu-head">
-        <strong id="menuTitle">Menu</strong>
-        <button id="closeMenu" class="close-btn" aria-label="Close menu">×</button>
-      </div>
-      <div class="menu-links">
-        <a href="#about" id="mNavAbout" onclick="closeMenu()">About</a>
-        <a href="#work" id="mNavWork" onclick="closeMenu()">My Work</a>
-        <a href="#info" id="mNavInfo" onclick="closeMenu()">About Me</a>
-        <a href="#services" id="mNavServices" onclick="closeMenu()">Services</a>
-        <a href="#partners" id="mNavPartners" onclick="closeMenu()">Partners</a>
-        <a href="#contact" id="mNavContact" onclick="closeMenu()">Contact</a>
-      </div>
-      <div class="menu-actions">
-        <button id="arBtnMenu" class="chip">AR</button>
-        <button id="enBtnMenu" class="chip active">EN</button>
-      </div>
-    </div>
-  </div>
 
   <!-- ===== Hero ===== -->
   <section class="hero">
@@ -124,56 +87,36 @@
       <div class="hero-text reveal" style="transition-delay:.05s">
         <h1 id="heroTitle">Your Brand Is in Safe Hands — Strategy, Execution, Results.</h1>
         <p id="heroSub">We craft and execute full-funnel digital strategies that drive real growth.</p>
-        <div class="hero-buttons">
-          <a href="#services" class="btn btn-primary" id="btnServices">Services</a>
-          <a href="#contact" class="btn btn-ghost" id="btnContact">Contact Me</a>
-        </div>
       </div>
       <div class="reveal" style="transition-delay:.1s">
         <div class="avatar">
-          <!-- ✅ your image -->
           <img src="https://i.postimg.cc/pXdxT1bh/unnamed.jpg" alt="Profile Photo" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== About Work ===== -->
-  <section id="about" class="section">
+  <!-- ===== About ===== -->
+  <section id="about" class="section reveal">
     <div class="container">
-      <h2 id="aboutTitle" class="reveal">About</h2>
-      <p id="aboutText" class="reveal" style="transition-delay:.05s">
-        Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.
-      </p>
-      <p id="infoTextUnder" class="reveal" style="transition-delay:.1s">
-        Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.
-      </p>
+      <h2 id="aboutTitle">About</h2>
+      <p id="aboutText">Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.</p>
+      <p id="aboutSub">Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.</p>
     </div>
   </section>
 
- <!-- ===== My Work (GIF) ===== -->
-<section id="work" class="section center">
-  <div class="container glass reveal" style="padding: 40px; border-radius: 20px;">
-    <h2 id="workTitle" class="reveal">My Work</h2>
-    <p id="workDesc" class="reveal" style="margin-bottom: 20px; transition-delay:.05s;">
-      A quick look at some of my campaign results.
-    </p>
-
-    <div class="video-frame reveal"
-         style="position: relative; max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.2); background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);">
-      <img 
-        src="https://i.postimg.cc/wvfhB07j/campaign-results-fixed-ezgif-com-video-to-gif-converter.gif" 
-        alt="Campaign Results Preview"
-        style="width:100%; height:auto; display:block; border-radius:20px;"
-        loading="lazy">
+  <!-- ===== My Work (GIF) ===== -->
+  <section id="work" class="section center reveal">
+    <div class="container glass" style="padding: 40px; border-radius: 20px;">
+      <h2 id="workTitle">My Work</h2>
+      <p id="workDesc">A quick look at some of my campaign results.</p>
+      <div class="video-frame reveal" style="max-width:900px;margin:auto;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25);">
+        <img src="https://i.postimg.cc/wvfhB07j/campaign-results-fixed-ezgif-com-video-to-gif-converter.gif" alt="Campaign Results" loading="lazy">
+      </div>
     </div>
-  </div>
-</section>
-
-
+  </section>
   <!-- ===== About Me (6 cards) ===== -->
-  <section id="info" class="section">
+  <section id="info" class="section reveal">
     <div class="container">
       <h2 id="infoTitle" class="reveal">About Me</h2>
       <div class="grid grid-3">
@@ -311,8 +254,9 @@
     <p id="footerText">© 2025 Eslam Mamdouh — All Rights Reserved.</p>
   </footer>
 
+  <!-- ===== Scripts (Scroll reveal + Translations) ===== -->
   <script>
-    /* ===== Scroll reveal (attach) ===== */
+    /* Scroll reveal */
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -323,18 +267,14 @@
     },{threshold:.15});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    /* ===== Translations (EN/AR) ===== */
+    /* Translations (EN / AR) — same structure as Version 2 */
     const dict = {
       en:{
-        menuTitle:'Menu',
-        navAbout:'About', navWork:'My Work', navInfo:'About Me', navServices:'Services', navPartners:'Partners', navContact:'Contact',
-        mNavAbout:'About', mNavWork:'My Work', mNavInfo:'About Me', mNavServices:'Services', mNavPartners:'Partners', mNavContact:'Contact',
         heroTitle:'Your Brand Is in Safe Hands — Strategy, Execution, Results.',
         heroSub:'We craft and execute full-funnel digital strategies that drive real growth.',
-        btnServices:'Services', btnContact:'Contact Me',
         aboutTitle:'About',
         aboutText:'Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.',
-        infoTextUnder:'Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.',
+        aboutSub:'Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.',
         workTitle:'My Work', workDesc:'A quick look at some of my campaign results.',
         infoTitle:'About Me',
         resultTitle:'Campaigns Results', resultText:'1M+ impressions, 5.2x average ROAS, CTR up to 11.8%.',
@@ -363,15 +303,11 @@
         footerText:'© 2025 Eslam Mamdouh — All Rights Reserved.'
       },
       ar:{
-        menuTitle:'القائمة',
-        navAbout:'عن العمل', navWork:'أعمالي', navInfo:'نبذة عني', navServices:'الخدمات', navPartners:'شركاء النجاح', navContact:'تواصل',
-        mNavAbout:'عن العمل', mNavWork:'أعمالي', mNavInfo:'نبذة عني', mNavServices:'الخدمات', mNavPartners:'شركاء النجاح', mNavContact:'تواصل',
         heroTitle:'براندك في إيد أمينة — تفكير، تنفيذ، ونتائج.',
         heroSub:'نصمم وننفّذ استراتيجيات تسويق رقمية متكاملة تحقق نموًا حقيقيًا.',
-        btnServices:'الخدمات', btnContact:'تواصل معي',
         aboutTitle:'عن العمل',
         aboutText:'التسويق مش إعلان... التسويق تجربة تُبنى بالنية والشغف والتنظيم.',
-        infoTextUnder:'أعمل في التسويق الرقمي منذ أكثر من 9 سنوات — إدارة حملات، بناء هوية، وتحليلات بنتائج ملموسة.',
+        aboutSub:'أعمل في التسويق الرقمي منذ أكثر من 9 سنوات — إدارة حملات، بناء هوية، وتحليلات بنتائج ملموسة.',
         workTitle:'أعمالي', workDesc:'نظرة سريعة على بعض نتائج الحملات الإعلانية.',
         infoTitle:'نبذة عني',
         resultTitle:'نتائج الحملات', resultText:'+1M انطباع، ROAS متوسط 5.2x، CTR حتى 11.8%.',
@@ -397,16 +333,13 @@
         djeepTitle:'Djeep Egypt', djeepDesc:'سوشيال / أداء',
         easyTitle:'Easy Furniture', easyDesc:'كرياتيف / تحويلات',
         contactTitle:'تواصل', contactText:'📩 mamdouheslam913@gmail.com<br>📞 01091837869 — 01110167731',
-        footerText:'© 2025 Eslam Mamdouh — جميع الحقوق محفوظة.'
+        footerText:'© 2025 إسلام ممدوح — جميع الحقوق محفوظة.'
       }
     };
 
     const ids = [
-      'menuTitle',
-      'navAbout','navWork','navInfo','navServices','navPartners','navContact','navContact2',
-      'mNavAbout','mNavWork','mNavInfo','mNavServices','mNavPartners','mNavContact',
-      'heroTitle','heroSub','btnServices','btnContact',
-      'aboutTitle','aboutText','infoTextUnder',
+      'heroTitle','heroSub',
+      'aboutTitle','aboutText','aboutSub',
       'workTitle','workDesc',
       'infoTitle',
       'resultTitle','resultText','eduTitle','eduText','expTitle','expText',
@@ -425,29 +358,17 @@
       document.body.dir = (lang==='ar') ? 'rtl' : 'ltr';
       document.documentElement.lang = lang;
       const isAr = (lang==='ar');
-      ['arBtn','arBtnMenu'].forEach(i=>document.getElementById(i)?.classList.toggle('active',isAr));
-      ['enBtn','enBtnMenu'].forEach(i=>document.getElementById(i)?.classList.toggle('active',!isAr));
+      document.getElementById('arBtn')?.classList.toggle('active',isAr);
+      document.getElementById('enBtn')?.classList.toggle('active',!isAr);
     }
 
-    /* Language bindings + default */
     document.getElementById('arBtn').addEventListener('click',()=>switchLang('ar'));
     document.getElementById('enBtn').addEventListener('click',()=>switchLang('en'));
-    document.getElementById('arBtnMenu').addEventListener('click',()=>{switchLang('ar'); closeMenu();});
-    document.getElementById('enBtnMenu').addEventListener('click',()=>{switchLang('en'); closeMenu();});
-    switchLang('en'); // default EN
-
-    /* Mobile menu */
-    const menuBtn=document.getElementById('menuBtn');
-    const closeMenuBtn=document.getElementById('closeMenu');
-    const mobileMenu=document.getElementById('mobileMenu');
-    function openMenu(){ mobileMenu.classList.add('active'); }
-    function closeMenu(){ mobileMenu.classList.remove('active'); }
-    menuBtn.addEventListener('click',openMenu);
-    closeMenuBtn.addEventListener('click',closeMenu);
-    mobileMenu.addEventListener('click',e=>{ if(e.target===mobileMenu) closeMenu(); });
+    switchLang('en'); // default
   </script>
 </body>
 </html>
+
 
 
 
