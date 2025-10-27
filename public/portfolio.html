@@ -4,13 +4,17 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Eslam Mamdouh - Media Buyer Portfolio</title>
+  <meta name="description" content="Eslam Mamdouh - Digital Media Buyer & Strategist | Strategy, Execution, Results.">
+  <meta name="author" content="Eslam Mamdouh">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Cairo:wght@300;400;600;700;800&display=swap');
+
     :root{
       --primary:#00A89B; --accent:#00E0C6; --dark:#0E4658; --ink:#0F172A;
-      --base:#F7F9FB; --white:#fff; --radius:20px; --shadow:0 10px 30px rgba(0,0,0,.08)
+      --base:#F7F9FB; --white:#fff; --radius:20px; --shadow:0 10px 30px rgba(0,0,0,.08);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:"Poppins","Cairo",system-ui;background:var(--base);color:var(--ink);line-height:1.7;transition:.25s ease}
+    body{font-family:"Poppins","Cairo",system-ui;background:var(--base);color:var(--ink);line-height:1.7;transition:.25s ease;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block;border-radius:var(--radius)}
     .container{width:min(1140px,92%);margin:auto}
@@ -22,7 +26,7 @@
     .chip{padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.12);cursor:pointer;font-weight:600}
     .chip.active{background:var(--dark);color:#fff}
 
-    /* ===== Header (2-row capable) ===== */
+    /* Header */
     header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.05)}
     .nav-wrap{display:grid;gap:6px;padding:10px 0}
     .topbar{display:flex;align-items:center;justify-content:space-between}
@@ -31,103 +35,130 @@
     .menu-btn{display:none;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.6);font-size:24px;cursor:pointer}
     @media (max-width:860px){ .menu-btn{display:block} .navrow{display:none} }
 
-    /* ===== Mobile menu (transparent + blur) ===== */
-    .mobile-menu{position:fixed;inset:0;background:rgba(15,23,42,.15);backdrop-filter:blur(10px);display:none;justify-content:flex-end;z-index:999}
-    .mobile-menu.active{display:flex}
-    .menu-panel{width:300px;max-width:86vw;height:100%;background:rgba(255,255,255,.93);backdrop-filter:blur(16px);box-shadow:var(--shadow);padding:22px 18px;display:flex;flex-direction:column;gap:14px;transform:translateX(100%);animation:slideIn .35s ease forwards;border-top-left-radius:16px;border-bottom-left-radius:16px}
-    @keyframes slideIn{to{transform:translateX(0)}}
-    .menu-head{display:flex;justify-content:space-between;align-items:center}
-    .close-btn{font-size:28px;background:none;border:none;color:var(--dark);cursor:pointer}
-    .menu-links{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-    .menu-links a{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.65);box-shadow:var(--shadow);text-align:center}
-    .menu-actions{margin-top:auto;display:flex;gap:10px;justify-content:center}
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      color:#fff;
+      overflow:hidden;
+      background:linear-gradient(135deg,#00A89B,#00E0C6);
+      background-size:200% 200%;
+      animation:gradientMove 10s ease infinite;
+    }
+    @keyframes gradientMove {
+      0%,100%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('https://i.postimg.cc/0yNRT1Wc/HZA-2.jpg') center/cover no-repeat;
+      opacity:.35;
+    }
+    .hero .container{
+      position:relative;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:40px;
+      align-items:center;
+      z-index:1;
+    }
+    @media(max-width:900px){
+      .hero .container{grid-template-columns:1fr;text-align:center}
+      .hero .container img{max-width:260px;margin:auto}
+    }
+    .hero h1{
+      font-size:clamp(32px,4vw,56px);
+      line-height:1.15;
+      margin-bottom:12px;
+      font-weight:700;
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp 1s ease forwards .3s;
+    }
+    .hero p{
+      font-size:18px;
+      opacity:0;
+      margin-bottom:24px;
+      animation:fadeUp 1s ease forwards .6s;
+    }
+    @keyframes fadeUp{
+      to{opacity:1;transform:none}
+    }
+    .avatar{
+      width:300px;
+      aspect-ratio:1;
+      border-radius:50%;
+      overflow:hidden;
+      border:6px solid rgba(255,255,255,.55);
+      box-shadow:0 0 60px rgba(255,255,255,.25);
+      margin-inline:auto;
+      animation:float 6s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
 
-    /* ===== Hero ===== */
-    .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:linear-gradient(135deg,#00A89B,#00E0C6)}
-    .hero::before{content:"";position:absolute;inset:0;background:url('https://i.postimg.cc/0yNRT1Wc/HZA-2.jpg') center/cover no-repeat;opacity:.35}
-    .hero .container{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;z-index:1}
-    @media(max-width:900px){.hero .container{grid-template-columns:1fr;text-align:center}}
-    .hero h1{font-size:clamp(32px,4vw,56px);line-height:1.15;margin-bottom:12px;font-weight:700}
-    .hero p{font-size:18px;opacity:.95;margin-bottom:24px}
-    .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
-    @media(max-width:900px){.hero-buttons{justify-content:center}}
-    .avatar{width:300px;aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,.55);box-shadow:0 0 60px rgba(255,255,255,.25);margin-inline:auto}
+    /* Floating WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 62px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 35px rgba(37, 211, 102, 0.55);
+    }
 
-    /* ===== Grids & cards ===== */
-    .grid{display:grid;gap:20px}
-    .grid-3{grid-template-columns:repeat(3,1fr)}
-    @media(max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.grid-3{grid-template-columns:1fr}}
-    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:.25s}
-    .card:hover{transform:translateY(-6px)}
-    .thumb{aspect-ratio:16/10;overflow:hidden}
-    .thumb img{width:100%;height:100%;object-fit:cover}
-    .meta{padding:14px 16px}
-
-    /* ===== Footer (in part 2) ===== */
-    /* ===== Scroll reveal (smooth) ===== */
+    /* Reveal animation */
     .reveal{opacity:0;transform:translateY(36px);transition:opacity 1s ease,transform 1s ease}
     .reveal.in-view{opacity:1;transform:none}
   </style>
 </head>
 <body>
 
-  <!-- ===== Header ===== -->
+  <!-- Header -->
   <header>
     <div class="container nav-wrap">
       <div class="topbar">
-        <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+        <button id="menuBtn" class="menu-btn">☰</button>
         <div class="nav-actions">
           <button id="arBtn" class="chip">AR</button>
           <button id="enBtn" class="chip active">EN</button>
-          <a href="#contact" class="btn btn-primary" id="navContact">Contact</a>
         </div>
       </div>
       <nav class="navrow">
-        <a href="#about" id="navAbout">About</a>
-        <a href="#work" id="navWork">My Work</a>
-        <a href="#info" id="navInfo">About Me</a>
-        <a href="#services" id="navServices">Services</a>
-        <a href="#partners" id="navPartners">Partners</a>
-        <a href="#contact" id="navContact2">Contact</a>
+        <a href="#about">About</a>
+        <a href="#work">My Work</a>
+        <a href="#info">About Me</a>
+        <a href="#services">Services</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- ===== Mobile Menu ===== -->
-  <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true">
-    <div class="menu-panel">
-      <div class="menu-head">
-        <strong id="menuTitle">Menu</strong>
-        <button id="closeMenu" class="close-btn" aria-label="Close menu">×</button>
-      </div>
-      <div class="menu-links">
-        <a href="#about" id="mNavAbout" onclick="closeMenu()">About</a>
-        <a href="#work" id="mNavWork" onclick="closeMenu()">My Work</a>
-        <a href="#info" id="mNavInfo" onclick="closeMenu()">About Me</a>
-        <a href="#services" id="mNavServices" onclick="closeMenu()">Services</a>
-        <a href="#partners" id="mNavPartners" onclick="closeMenu()">Partners</a>
-        <a href="#contact" id="mNavContact" onclick="closeMenu()">Contact</a>
-      </div>
-      <div class="menu-actions">
-        <button id="arBtnMenu" class="chip">AR</button>
-        <button id="enBtnMenu" class="chip active">EN</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== Hero ===== -->
+  <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="hero-text reveal" style="transition-delay:.05s">
+      <div class="hero-text">
         <h1 id="heroTitle">Your Brand Is in Safe Hands — Strategy, Execution, Results.</h1>
         <p id="heroSub">We craft and execute full-funnel digital strategies that drive real growth.</p>
-        <div class="hero-buttons">
-          <a href="#services" class="btn btn-primary" id="btnServices">Services</a>
-          <a href="#contact" class="btn btn-ghost" id="btnContact">Contact Me</a>
-        </div>
       </div>
-      <div class="reveal" style="transition-delay:.1s">
+      <div>
         <div class="avatar">
           <img src="https://i.postimg.cc/pXdxT1bh/unnamed.jpg" alt="Profile Photo" loading="lazy">
         </div>
@@ -135,186 +166,98 @@
     </div>
   </section>
 
-  <!-- ===== About ===== -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2 id="aboutTitle" class="reveal">About</h2>
-      <p id="aboutText" class="reveal" style="transition-delay:.05s">
+  <!-- About -->
+  <section id="about" class="section reveal">
+    <div class="container center">
+      <h2 id="aboutTitle">About</h2>
+      <p id="aboutText" style="max-width:800px;margin:auto;">
         Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.
       </p>
-      <p id="infoTextUnder" class="reveal" style="transition-delay:.1s">
+      <p id="aboutSub" style="margin-top:16px;">
         Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.
       </p>
     </div>
   </section>
 
-  <!-- ===== My Work (GIF) ===== -->
-  <section id="work" class="section center">
-    <div class="container glass reveal" style="padding: 40px; border-radius: 20px;">
-      <h2 id="workTitle" class="reveal">My Work</h2>
-      <p id="workDesc" class="reveal" style="margin-bottom: 20px; transition-delay:.05s;">
-        A quick look at some of my campaign results.
-      </p>
-      <div class="video-frame reveal"
-           style="position: relative; max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden;
-                  box-shadow: 0 10px 40px rgba(0,0,0,0.2); background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);">
-        <img 
-          src="https://i.postimg.cc/wvfhB07j/campaign-results-fixed-ezgif-com-video-to-gif-converter.gif" 
-          alt="Campaign Results Preview"
-          style="width:100%; height:auto; display:block; border-radius:20px;"
-          loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== About Me (6 cards) ===== -->
-  <section id="info" class="section">
+  <!-- My Work -->
+  <section id="work" class="section center reveal">
     <div class="container">
-      <h2 id="infoTitle" class="reveal">About Me</h2>
-      <div class="grid grid-3">
-        <div class="card reveal" style="transition-delay:.05s">
-          <div class="thumb"><img src="https://i.postimg.cc/QxLSD1X4/Campaign-Results2.jpg" alt="Campaigns Results"></div>
-          <div class="meta">
-            <h3 id="resultTitle">Campaigns Results</h3>
-            <p id="resultText">1M+ impressions, 5.2x average ROAS, CTR up to 11.8%.</p>
-          </div>
-        </div>
-        <div class="card reveal" style="transition-delay:.1s">
-          <div class="thumb"><img src="https://i.postimg.cc/CxrqhpGY/Education5.jpg" alt="Education"></div>
-          <div class="meta">
-            <h3 id="eduTitle">Education</h3>
-            <p id="eduText">Certified by Udemy, Meta Blueprint, and Google Digital Garage.</p>
-          </div>
-        </div>
-        <div class="card reveal" style="transition-delay:.15s">
-          <div class="thumb"><img src="https://i.postimg.cc/8zSyRW9V/Experience1.jpg" alt="Experience"></div>
-          <div class="meta">
-            <h3 id="expTitle">Experience</h3>
-            <p id="expText">Media Buyer & Strategist — Freelance<br>Marketing Lead — Easy Furniture<br>Ads Manager — Djeep Egypt</p>
-          </div>
-        </div>
-        <div class="card reveal" style="transition-delay:.2s">
-          <div class="thumb"><img src="https://i.postimg.cc/9FWRyQ1H/Courses6.jpg" alt="Courses"></div>
-          <div class="meta">
-            <h3 id="courseTitle">Courses</h3>
-            <p id="courseText">Advanced Google Ads, Shopify, and Data Analytics.</p>
-          </div>
-        </div>
-        <div class="card reveal" style="transition-delay:.25s">
-          <div class="thumb"><img src="https://i.postimg.cc/Przbk7Vd/Skills3.jpg" alt="Skills"></div>
-          <div class="meta">
-            <h3 id="skillsTitle">Skills</h3>
-            <p id="skillsText">Media Buying, Copywriting, AI Marketing, E-Commerce Growth.</p>
-          </div>
-        </div>
-        <div class="card reveal" style="transition-delay:.3s">
-          <div class="thumb"><img src="https://i.postimg.cc/0QwmXXJ1/Languages4.jpg" alt="Languages"></div>
-          <div class="meta">
-            <h3 id="langTitle">Languages</h3>
-            <p id="langText">Arabic (Native) — English (Professional).</p>
-          </div>
-        </div>
+      <h2 id="workTitle">My Work</h2>
+      <p id="workDesc">A quick look at some of my campaign results.</p>
+      <div class="video-frame reveal">
+        <img src="https://i.postimg.cc/wvfhB07j/campaign-results-fixed-ezgif-com-video-to-gif-converter.gif"
+             alt="Campaign Results Preview"
+             style="border-radius:20px;width:100%;height:auto;" loading="lazy">
       </div>
     </div>
   </section>
-  <!-- ==== نهاية الجزء 1 ==== -->
-  <!-- ===== Services (6) ===== -->
-  <section id="services" class="section">
+
+  <!-- About Me -->
+  <section id="info" class="section reveal">
     <div class="container">
-      <h2 id="servicesTitle" class="reveal">Services</h2>
-      <div class="grid grid-3">
-        <div class="card reveal" style="transition-delay:.05s">
-          <div class="thumb"><img src="https://i.postimg.cc/wBB5Wk5p/service-ads.jpg" alt="Ads Management"></div>
-          <div class="meta"><h3 id="adsTitle">Ads Management</h3><p id="adsDesc">Plan, run, and optimize for top ROI.</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.1s">
-          <div class="thumb"><img src="https://i.postimg.cc/QdzV3kGs/service-design.jpg" alt="Ad & Social Design"></div>
-          <div class="meta"><h3 id="designTitle">Ad & Social Design</h3><p id="designDesc">Cohesive visual identity and engaging creatives.</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.15s">
-          <div class="thumb"><img src="https://i.postimg.cc/CKWZjCmB/service-copy.jpg" alt="Copywriting"></div>
-          <div class="meta"><h3 id="copyTitle">Copywriting</h3><p id="copyDesc">Clear, persuasive, conversion-focused copy.</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.2s">
-          <div class="thumb"><img src="https://i.postimg.cc/02qYgvGS/service-ai.jpg" alt="AI for Marketing"></div>
-          <div class="meta"><h3 id="aiTitle">AI for Marketing</h3><p id="aiDesc">Smart automation for analysis & ideation.</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.25s">
-          <div class="thumb"><img src="https://i.postimg.cc/RhGVbwLr/service-shopify.jpg" alt="Shopify Stores"></div>
-          <div class="meta"><h3 id="shopifyTitle">Shopify Stores</h3><p id="shopifyDesc">Build and optimize seamless stores.</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.3s">
-          <div class="thumb"><img src="https://i.postimg.cc/rsGtydGH/service-analytics.jpg" alt="Analytics & Reports"></div>
-          <div class="meta"><h3 id="analyticsTitle">Analytics & Reports</h3><p id="analyticsDesc">Dashboards that speed decisions.</p></div>
-        </div>
+      <h2 id="infoTitle">About Me</h2>
+      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:40px;">
+        <div class="card reveal"><img src="https://i.postimg.cc/QxLSD1X4/Campaign-Results2.jpg"><h3 id="resultTitle">Campaigns Results</h3><p id="resultText">1M+ impressions, 5.2x average ROAS, CTR up to 11.8%.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/CxrqhpGY/Education5.jpg"><h3 id="eduTitle">Education</h3><p id="eduText">Certified by Udemy, Meta Blueprint, and Google Digital Garage.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/8zSyRW9V/Experience1.jpg"><h3 id="expTitle">Experience</h3><p id="expText">Media Buyer & Strategist — Freelance<br>Marketing Lead — Easy Furniture<br>Ads Manager — Djeep Egypt</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/9FWRyQ1H/Courses6.jpg"><h3 id="courseTitle">Courses</h3><p id="courseText">Advanced Google Ads, Shopify, and Data Analytics.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/Przbk7Vd/Skills3.jpg"><h3 id="skillsTitle">Skills</h3><p id="skillsText">Media Buying, Copywriting, AI Marketing, E-Commerce Growth.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/0QwmXXJ1/Languages4.jpg"><h3 id="langTitle">Languages</h3><p id="langText">Arabic (Native) — English (Professional).</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Success Partners (7) ===== -->
-  <section id="partners" class="section">
-    <div class="container">
-      <h2 id="partnersTitle" class="reveal">Success Partners</h2>
-      <p id="partnersText" class="reveal" style="transition-delay:.05s">
-        Brands I’ve worked with — gaining practical insight into the Egyptian market and beyond.
-      </p>
-      <div class="grid grid-3">
-        <div class="card reveal" style="transition-delay:.05s">
-          <div class="thumb"><img src="https://i.postimg.cc/zXQBV31J/Premium-property.png" alt="Mix Mirror"></div>
-          <div class="meta"><h3 id="mixTitle">Mix Mirror</h3><p id="mixDesc">Brand Identity & Ads</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.1s">
-          <div class="thumb"><img src="https://i.postimg.cc/9M4V3YrJ/Untitled-1-bny.png" alt="Zain Furniture"></div>
-          <div class="meta"><h3 id="zainTitle">Zain Furniture</h3><p id="zainDesc">Page, Ads & Creatives</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.15s">
-          <div class="thumb"><img src="https://i.postimg.cc/rwvNC8xY/336878626-724080602833993-1539476635948229214-n.jpg" alt="Al-Bayt Al-Asry"></div>
-          <div class="meta"><h3 id="asryTitle">البيت العصري</h3><p id="asryDesc">Page, Ads & Creatives</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.2s">
-          <div class="thumb"><img src="https://i.postimg.cc/pLYLkCFP/Whats-App-Image-2025-01-19-at-21-13-22-4483f429.jpg" alt="Al-Mokhtar"></div>
-          <div class="meta"><h3 id="mokhtarTitle">المختار للأثاث</h3><p id="mokhtarDesc">Page, Ads & Creatives</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.25s">
-          <div class="thumb"><img src="https://i.postimg.cc/fbqtjCGk/475766513-597064353190714-8491457059691776769-n.jpg" alt="Bta3 Chocolate"></div>
-          <div class="meta"><h3 id="chocoTitle">بتاع شيكولاتة</h3><p id="chocoDesc">Ads</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.3s">
-          <div class="thumb"><img src="https://i.postimg.cc/j2ScH5nW/djeep.jpg" alt="Djeep Egypt"></div>
-          <div class="meta"><h3 id="djeepTitle">Djeep Egypt</h3><p id="djeepDesc">Social / Performance</p></div>
-        </div>
-        <div class="card reveal" style="transition-delay:.35s">
-          <div class="thumb"><img src="https://i.postimg.cc/3Nx1XR0m/easy.jpg" alt="Easy Furniture"></div>
-          <div class="meta"><h3 id="easyTitle">Easy Furniture</h3><p id="easyDesc">Creatives / Conversion</p></div>
-        </div>
+  <!-- Services -->
+  <section id="services" class="section reveal">
+    <div class="container center">
+      <h2 id="servicesTitle">Services</h2>
+      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:40px;">
+        <div class="card reveal"><img src="https://i.postimg.cc/wBB5Wk5p/service-ads.jpg"><h3 id="adsTitle">Ads Management</h3><p id="adsDesc">Plan, run, and optimize for top ROI.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/QdzV3kGs/service-design.jpg"><h3 id="designTitle">Ad & Social Design</h3><p id="designDesc">Cohesive visual identity and engaging creatives.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/CKWZjCmB/service-copy.jpg"><h3 id="copyTitle">Copywriting</h3><p id="copyDesc">Clear, persuasive, conversion-focused copy.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/02qYgvGS/service-ai.jpg"><h3 id="aiTitle">AI for Marketing</h3><p id="aiDesc">Smart automation for analysis & ideation.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/RhGVbwLr/service-shopify.jpg"><h3 id="shopifyTitle">Shopify Stores</h3><p id="shopifyDesc">Build and optimize seamless stores.</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/rsGtydGH/service-analytics.jpg"><h3 id="analyticsTitle">Analytics & Reports</h3><p id="analyticsDesc">Dashboards that speed decisions.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Contact ===== -->
-  <section id="contact" class="section">
-    <div class="container" style="padding:30px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border-radius:20px;box-shadow:var(--shadow);text-align:center">
-      <h2 id="contactTitle" class="reveal">Contact</h2>
-      <p id="contactText" class="reveal" style="transition-delay:.05s">
-        📩 mamdouheslam913@gmail.com<br>📞 +20 1091837869
-      </p>
+  <!-- Partners -->
+  <section id="partners" class="section reveal">
+    <div class="container center">
+      <h2 id="partnersTitle">Success Partners</h2>
+      <p id="partnersText">Brands I’ve worked with — gaining practical insight into the Egyptian market and beyond.</p>
+      <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:40px;">
+        <div class="card reveal"><img src="https://i.postimg.cc/zXQBV31J/Premium-property.png"><h3 id="mixTitle">Mix Mirror</h3><p id="mixDesc">Brand Identity & Ads</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/9M4V3YrJ/Untitled-1-bny.png"><h3 id="zainTitle">Zain Furniture</h3><p id="zainDesc">Page, Ads & Creatives</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/rwvNC8xY/336878626-724080602833993-1539476635948229214-n.jpg"><h3 id="asryTitle">البيت العصري</h3><p id="asryDesc">Page, Ads & Creatives</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/pLYLkCFP/Whats-App-Image-2025-01-19-at-21-13-22-4483f429.jpg"><h3 id="mokhtarTitle">المختار للأثاث</h3><p id="mokhtarDesc">Page, Ads & Creatives</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/fbqtjCGk/475766513-597064353190714-8491457059691776769-n.jpg"><h3 id="chocoTitle">بتاع شيكولاتة</h3><p id="chocoDesc">Ads</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/j2ScH5nW/djeep.jpg"><h3 id="djeepTitle">Djeep Egypt</h3><p id="djeepDesc">Social / Performance</p></div>
+        <div class="card reveal"><img src="https://i.postimg.cc/3Nx1XR0m/easy.jpg"><h3 id="easyTitle">Easy Furniture</h3><p id="easyDesc">Creatives / Conversion</p></div>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <!-- Contact -->
+  <section id="contact" class="section reveal">
+    <div class="container center" style="background:rgba(255,255,255,.8);border-radius:20px;padding:40px;backdrop-filter:blur(8px);box-shadow:var(--shadow);">
+      <h2 id="contactTitle">Contact</h2>
+      <p id="contactText">📩 mamdouheslam913@gmail.com<br>📞 +20 1091837869</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer style="background:linear-gradient(90deg,#00A89B,#00E0C6);color:#fff;text-align:center;padding:26px 0;font-weight:600">
     Built by <strong>Eslam Mamdouh 💚</strong>
   </footer>
 
-  <!-- ===== Floating WhatsApp ===== -->
-  <a href="https://wa.me/201091837869" target="_blank" class="whatsapp-float" title="Chat on WhatsApp"
-     style="position:fixed;bottom:24px;right:24px;z-index:1000;background-color:#25D366;color:white;border-radius:50%;width:62px;height:62px;display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 8px 25px rgba(37,211,102,0.4);transition:all .3s ease;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12.004 2C6.485 2 2 6.484 2 12.003c0 2.117.62 4.067 1.686 5.713L2 22l4.396-1.643A9.96 9.96 0 0012.004 22c5.518 0 10.004-4.484 10.004-9.997C22.008 6.484 17.522 2 12.004 2zm0 18.164a8.14 8.14 0 01-4.151-1.14l-.297-.176-2.604.974.874-2.537-.193-.312A8.082 8.082 0 013.834 12c0-4.516 3.655-8.18 8.17-8.18 4.514 0 8.17 3.664 8.17 8.18s-3.656 8.164-8.17 8.164zm4.48-6.12c-.245-.122-1.45-.716-1.676-.796-.225-.081-.39-.122-.555.122-.164.244-.636.795-.78.958-.144.162-.29.183-.534.061-.244-.122-1.03-.379-1.963-1.207-.725-.647-1.214-1.447-1.358-1.69-.144-.244-.015-.376.107-.498.11-.11.244-.285.366-.428.122-.143.162-.244.244-.407.081-.162.04-.305-.02-.427-.06-.122-.555-1.337-.76-1.828-.2-.48-.4-.416-.555-.427l-.47-.008a.9.9 0 00-.65.305c-.223.244-.855.836-.855 2.037 0 1.201.876 2.362 1 2.525.122.162 1.72 2.625 4.168 3.68.584.252 1.04.403 1.396.515.586.187 1.12.161 1.541.098.47-.07 1.45-.593 1.656-1.165.204-.57.204-1.06.143-1.164-.06-.103-.224-.164-.47-.286z"/>
-    </svg>
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/201091837869" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+    💬
   </a>
 
-  <!-- ===== Script ===== -->
+  <!-- Script -->
   <script>
     // Scroll animation
     const io = new IntersectionObserver(entries=>{
@@ -331,22 +274,8 @@
     const arBtn=document.getElementById('arBtn');
     const enBtn=document.getElementById('enBtn');
     const texts={
-      en:{
-        heroTitle:'Your Brand Is in Safe Hands — Strategy, Execution, Results.',
-        heroSub:'We craft and execute full-funnel digital strategies that drive real growth.',
-        aboutTitle:'About',aboutText:'Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.',
-        infoTextUnder:'Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.',
-        workTitle:'My Work',workDesc:'A quick look at some of my campaign results.',
-        infoTitle:'About Me',servicesTitle:'Services',partnersTitle:'Success Partners',partnersText:'Brands I’ve worked with — gaining practical insight into the Egyptian market and beyond.',contactTitle:'Contact',contactText:'📩 mamdouheslam913@gmail.com<br>📞 +20 1091837869'
-      },
-      ar:{
-        heroTitle:'براندك في إيد أمينة — تفكير، تنفيذ، ونتائج.',
-        heroSub:'بنصمم وننفذ استراتيجيات تسويقية متكاملة تحقق نمو فعلي.',
-        aboutTitle:'عن العمل',aboutText:'التسويق مش إعلان... التسويق تجربة تُبنى بالنية والشغف والتنظيم.',
-        infoTextUnder:'خبرة أكثر من 9 سنوات في التسويق الرقمي — إدارة حملات وهوية وتحليل بيانات بنتائج حقيقية.',
-        workTitle:'أعمالي',workDesc:'نظرة سريعة على نتائج بعض الحملات الإعلانية.',
-        infoTitle:'نبذة عني',servicesTitle:'الخدمات',partnersTitle:'شركاء النجاح',partnersText:'علامات تجارية تعاونت معها — خبرة حقيقية في السوق المصري وخارجه.',contactTitle:'تواصل',contactText:'📩 mamdouheslam913@gmail.com<br>📞 01091837869'
-      }
+      en:{heroTitle:'Your Brand Is in Safe Hands — Strategy, Execution, Results.',heroSub:'We craft and execute full-funnel digital strategies that drive real growth.',aboutTitle:'About',aboutText:'Marketing isn’t about ads — it’s the craft of building experiences with intention, clarity, and heart.',aboutSub:'Over 9 years in digital marketing: performance ads, brand identity, and analytics that deliver measurable results.',workTitle:'My Work',workDesc:'A quick look at some of my campaign results.',infoTitle:'About Me',servicesTitle:'Services',partnersTitle:'Success Partners',partnersText:'Brands I’ve worked with — gaining practical insight into the Egyptian market and beyond.',contactTitle:'Contact',contactText:'📩 mamdouheslam913@gmail.com<br>📞 +20 1091837869'},
+      ar:{heroTitle:'براندك في إيد أمينة — تفكير، تنفيذ، ونتائج.',heroSub:'بنصمم وننفذ استراتيجيات تسويقية متكاملة تحقق نمو فعلي.',aboutTitle:'عن العمل',aboutText:'التسويق مش إعلان... التسويق تجربة تُبنى بالنية والشغف والتنظيم.',aboutSub:'خبرة أكثر من 9 سنوات في التسويق الرقمي — إدارة حملات وهوية وتحليل بيانات بنتائج حقيقية.',workTitle:'أعمالي',workDesc:'نظرة سريعة على نتائج بعض الحملات الإعلانية.',infoTitle:'نبذة عني',servicesTitle:'الخدمات',partnersTitle:'شركاء النجاح',partnersText:'علامات تجارية تعاونت معها — خبرة حقيقية في السوق المصري وخارجه.',contactTitle:'تواصل',contactText:'📩 mamdouheslam913@gmail.com<br>📞 01091837869'}
     };
     function switchLang(lang){
       const t=texts[lang];
@@ -360,10 +289,11 @@
     }
     arBtn.addEventListener('click',()=>switchLang('ar'));
     enBtn.addEventListener('click',()=>switchLang('en'));
-    switchLang('en'); // default English
+    switchLang('en');
   </script>
 </body>
 </html>
+
 
 
 
